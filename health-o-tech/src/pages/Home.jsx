@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroSection from '../components/home/HeroSection';
+import BioTelemetryBar from '../components/home/BioTelemetryBar';
 import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
 import DomainsSection from '../components/home/DomainsSection';
@@ -8,6 +9,7 @@ import EventsSection from '../components/home/EventsSection';
 import MilestonesSection from '../components/home/MilestonesSection';
 import FaqSection from '../components/home/FaqSection';
 import JoinSection from '../components/home/JoinSection';
+import AffiliationsSection from '../components/home/AffiliationsSection';
 
 function HomePage() {
   return (
@@ -15,29 +17,35 @@ function HomePage() {
       {/* 1. Hero Section with DNA Video */}
       <HeroSection />
 
-      {/* 2. Stats Bar */}
+      {/* 2. Live Interactive Bio-Signal ECG Telemetry Canvas */}
+      <BioTelemetryBar />
+
+      {/* 3. Stats Bar */}
       <StatsBar />
 
-      {/* 3. About Section with Official Banner & 3 Pillars */}
+      {/* 4. About Section with Official Banner & 3 Pillars */}
       <AboutSection />
 
-      {/* 4. Core Domains & Verticals */}
+      {/* 5. Core Domains & Verticals */}
       <DomainsSection />
 
-      {/* 5. Flagship Student Projects & Innovations */}
+      {/* 6. Flagship Student Projects & Innovations */}
       <ProjectsSection />
 
-      {/* 6. Featured Events (Run Riot '26 & Tech Summits) */}
+      {/* 7. Featured Events (Run Riot '26 & Tech Summits) */}
       <EventsSection />
 
-      {/* 7. Club Milestones & Achievements */}
+      {/* 8. Club Milestones & Achievements */}
       <MilestonesSection />
 
-      {/* 8. FAQ Accordion */}
+      {/* 9. FAQ Accordion */}
       <FaqSection />
 
-      {/* 9. Join Us & Direct Inquiry Terminal */}
+      {/* 10. Join Us & Direct Inquiry Terminal */}
       <JoinSection />
+
+      {/* 11. Academic & Institutional Affiliations */}
+      <AffiliationsSection />
     </main>
   );
 }
