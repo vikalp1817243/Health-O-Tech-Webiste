@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Users, Calendar, Cpu, Award, Sparkles } from 'lucide-react';
 
-function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borderGlow }) {
+function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borderGlow, delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
   const [count, setCount] = useState(0);
@@ -32,11 +32,11 @@ function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borde
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 25 }}
+      initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={`relative group p-5 sm:p-6 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] backdrop-blur-xl ${borderGlow} hover:border-[var(--accent-cyan)] transition-all duration-300 flex flex-col items-center text-center`}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={`relative group p-5 sm:p-6 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] backdrop-blur-xl ${borderGlow} hover:border-[var(--accent-cyan)] transition-[border-color,box-shadow] duration-200 flex flex-col items-center text-center`}
     >
       {/* Icon Chip */}
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 mb-3 group-hover:scale-110 transition-transform ${colorClass}`}>
@@ -100,7 +100,7 @@ export default function StatsBar() {
     <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 mb-16">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         {stats.map((item, idx) => (
-          <CounterItem key={idx} {...item} />
+          <CounterItem key={idx} delay={idx * 0.12} {...item} />
         ))}
       </div>
     </section>

@@ -20,6 +20,10 @@
     --card-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.6);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
     background-color: var(--bg);

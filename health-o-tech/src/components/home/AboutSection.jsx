@@ -35,9 +35,10 @@ export default function AboutSection() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
         >
           <Sparkles className="w-3.5 h-3.5 text-[var(--accent-green)]" />
@@ -45,20 +46,20 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-orbitron font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
           Pioneering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)]">Health Informatics</span>
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-space text-[var(--text-muted)] text-sm sm:text-base leading-relaxed"
         >
           Health-O-Tech (HOT) is VIT Bhopal's premier technical club dedicated to the confluence of clinical medicine, computer science, and bio-engineering.
@@ -75,11 +76,11 @@ export default function AboutSection() {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, x: -25 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className={`p-5 rounded-2xl bg-[var(--surface-card)] border ${pillar.border} hover:border-[var(--accent-cyan)] backdrop-blur-md shadow-lg transition-all group`}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, delay: 0.1 + idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className={`p-5 rounded-2xl bg-[var(--surface-card)] border ${pillar.border} hover:border-[var(--accent-cyan)] backdrop-blur-md shadow-lg transition-[border-color,box-shadow] duration-200 group`}
               >
                 <div className="flex items-start gap-4">
                   <div className={`p-3 rounded-xl bg-white/5 border border-white/10 ${pillar.color} group-hover:scale-110 transition-transform`}>
@@ -99,9 +100,10 @@ export default function AboutSection() {
           })}
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: 0.55 }}
             className="p-4 rounded-xl bg-gradient-to-r from-[var(--accent-cyan)]/10 via-[var(--accent-green)]/10 to-transparent border border-[var(--border-accent)] flex items-center gap-3 mt-2"
           >
             <ShieldCheck className="w-5 h-5 text-[var(--accent-green)] shrink-0" />
@@ -113,10 +115,10 @@ export default function AboutSection() {
 
         {/* Right Column: Official Club Banner with Holographic Frame */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6 relative group"
         >
           {/* Ambient Glow */}

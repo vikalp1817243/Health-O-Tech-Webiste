@@ -9,7 +9,8 @@ import {
   Terminal,
   MessageSquare,
   ShieldCheck,
-  Check
+  Check,
+  ChevronDown
 } from 'lucide-react';
 
 export default function JoinSection() {
@@ -43,10 +44,10 @@ export default function JoinSection() {
   return (
     <section id="join" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="relative rounded-3xl bg-gradient-to-br from-[#161036] via-[#100C28] to-[#0A071E] border border-[var(--border-accent)] p-8 sm:p-12 lg:p-16 shadow-[0_0_50px_rgba(0,200,255,0.12)] overflow-hidden"
       >
         {/* Ambient Neon Blobs */}
@@ -106,9 +107,12 @@ export default function JoinSection() {
                 Why Join <span className="text-[var(--accent-cyan)]">HOT</span>?
               </h3>
               {benefits.map((b, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <div
+                  key={idx}
+                  className="flex items-start gap-3 p-3.5 rounded-xl bg-white/5 border border-white/5 hover:border-[var(--accent-cyan)]/30 transition-colors"
+                >
                   <CheckCircle2 className="w-4 h-4 text-[var(--accent-green)] shrink-0 mt-0.5" />
-                  <span className="font-space text-xs sm:text-sm text-neutral-300 leading-relaxed">{b}</span>
+                  <span className="font-space text-xs sm:text-sm text-neutral-200 leading-relaxed">{b}</span>
                 </div>
               ))}
             </div>
@@ -153,8 +157,9 @@ export default function JoinSection() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="font-space text-xs text-[var(--text-muted)] mb-1.5 block">
-                        Full Name *
+                      <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 flex items-center justify-between">
+                        <span>Full Name</span>
+                        <span className="text-[var(--accent-cyan)] text-[10px] uppercase font-mono tracking-wider">Required</span>
                       </label>
                       <input
                         type="text"
@@ -162,12 +167,13 @@ export default function JoinSection() {
                         placeholder="e.g. Alex Morgan"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-[var(--border)] text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--accent-cyan)] transition-all placeholder-neutral-600"
+                        className="w-full px-4 py-3 rounded-xl bg-[#0d0922]/90 border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all placeholder:text-neutral-500 shadow-inner"
                       />
                     </div>
                     <div>
-                      <label className="font-space text-xs text-[var(--text-muted)] mb-1.5 block">
-                        Email Address *
+                      <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 flex items-center justify-between">
+                        <span>Email Address</span>
+                        <span className="text-[var(--accent-cyan)] text-[10px] uppercase font-mono tracking-wider">Required</span>
                       </label>
                       <input
                         type="email"
@@ -175,30 +181,33 @@ export default function JoinSection() {
                         placeholder="alex@vitbhopal.ac.in"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-[var(--border)] text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--accent-cyan)] transition-all placeholder-neutral-600"
+                        className="w-full px-4 py-3 rounded-xl bg-[#0d0922]/90 border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all placeholder:text-neutral-500 shadow-inner"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="font-space text-xs text-[var(--text-muted)] mb-1.5 block">
+                    <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 block">
                       Vertical / Area of Interest
                     </label>
-                    <select
-                      value={formData.vertical}
-                      onChange={(e) => setFormData({ ...formData, vertical: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#090717] border border-[var(--border)] text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--accent-cyan)] transition-all cursor-pointer"
-                    >
-                      <option value="ai">AI Diagnostics & Pathology</option>
-                      <option value="iot">IoT Bio-Sensors & Telemetry</option>
-                      <option value="genomics">Computational Genomics & Bionics</option>
-                      <option value="events">Run Riot & Campus Events Organizing</option>
-                      <option value="research">Academic Research & IEEE Papers</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={formData.vertical}
+                        onChange={(e) => setFormData({ ...formData, vertical: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-[#0d0922] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all appearance-none cursor-pointer pr-10 shadow-inner"
+                      >
+                        <option value="ai" className="bg-[#0e0a24] text-white py-2">AI Diagnostics & Pathology</option>
+                        <option value="iot" className="bg-[#0e0a24] text-white py-2">IoT Bio-Sensors & Telemetry</option>
+                        <option value="genomics" className="bg-[#0e0a24] text-white py-2">Computational Genomics & Bionics</option>
+                        <option value="events" className="bg-[#0e0a24] text-white py-2">Run Riot & Campus Events Organizing</option>
+                        <option value="research" className="bg-[#0e0a24] text-white py-2">Academic Research & IEEE Papers</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-[var(--accent-cyan)] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
                   </div>
 
                   <div>
-                    <label className="font-space text-xs text-[var(--text-muted)] mb-1.5 block">
+                    <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 block">
                       Message / Questions
                     </label>
                     <textarea
@@ -206,7 +215,7 @@ export default function JoinSection() {
                       placeholder="Tell us about your interests, branch, or inquiry..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-[var(--border)] text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--accent-cyan)] transition-all placeholder-neutral-600 resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0d0922]/90 border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all placeholder:text-neutral-500 resize-none shadow-inner"
                     />
                   </div>
 

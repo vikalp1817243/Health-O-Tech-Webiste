@@ -89,9 +89,10 @@ export default function ProjectsSection() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
         >
           <Code className="w-3.5 h-3.5 text-[var(--accent-green)]" />
@@ -99,20 +100,20 @@ export default function ProjectsSection() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-orbitron font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
           Flagship <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)]">Projects</span>
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-space text-[var(--text-muted)] text-sm sm:text-base leading-relaxed"
         >
           Explore tangible healthcare hardware prototypes, computer vision diagnostics, and genomic tools engineered by our technical domain teams.
@@ -125,7 +126,7 @@ export default function ProjectsSection() {
               key={cat.id}
               type="button"
               onClick={() => setActiveFilter(cat.id)}
-              className={`font-space text-xs px-4 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`font-space text-xs px-4 py-2 rounded-xl transition-colors duration-200 cursor-pointer ${
                 activeFilter === cat.id
                   ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/50 shadow-[0_0_15px_rgba(0,200,255,0.25)] font-semibold'
                   : 'bg-white/5 text-[var(--text-muted)] hover:text-white border border-white/5 hover:border-white/10'
@@ -142,7 +143,7 @@ export default function ProjectsSection() {
         layout
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {filteredProjects.map((proj) => {
             const Icon = proj.icon;
             return (
@@ -152,8 +153,8 @@ export default function ProjectsSection() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className={`p-6 sm:p-7 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] ${proj.borderGlow} backdrop-blur-xl shadow-lg transition-all duration-300 flex flex-col justify-between group`}
+                transition={{ duration: 0.28, ease: 'easeOut' }}
+                className={`p-6 sm:p-7 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] ${proj.borderGlow} backdrop-blur-xl shadow-lg transition-[border-color,box-shadow] duration-200 flex flex-col justify-between group`}
               >
                 <div>
                   {/* Top Header */}

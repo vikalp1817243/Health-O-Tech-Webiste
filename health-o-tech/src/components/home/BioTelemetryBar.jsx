@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Activity, Heart, Shield, Radio, Sparkles } from 'lucide-react';
 
 export default function BioTelemetryBar() {
@@ -117,7 +118,13 @@ export default function BioTelemetryBar() {
   }, []);
 
   return (
-    <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-10">
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-10"
+    >
       <div className="rounded-2xl bg-[#0F0B24]/90 border border-[var(--border-accent)] p-3 sm:p-4 backdrop-blur-xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Left: Bio-Telemetry Status */}
@@ -180,6 +187,6 @@ export default function BioTelemetryBar() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
