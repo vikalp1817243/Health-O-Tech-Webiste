@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/Home';
 import TeamPage from './pages/Team';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           </Routes>
         </div>
         <Footer />
+        <ScrollToTop />
       </div>
     </BrowserRouter>
   );
