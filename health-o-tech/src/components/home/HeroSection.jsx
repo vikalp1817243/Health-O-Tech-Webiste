@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Dna, Activity, ChevronDown, Sparkles } from 'lucide-react';
+import EventPassModal from './EventPassModal';
 
 export default function HeroSection() {
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
+  const canvasRef = useRef(null);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -11,8 +15,88 @@ export default function HeroSection() {
     }
   };
 
+  // High-performance Bioluminescent Particle Field (35 particles)
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    const particles = Array.from({ length: 36 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.8 + 0.6,
+      speedY: -(Math.random() * 0.4 + 0.15),
+      speedX: (Math.random() - 0.5) * 0.2,
+      opacity: Math.random() * 0.5 + 0.2,
+      color: Math.random() > 0.4 ? '#00C8FF' : '#00E676',
+    }));
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+
+        // Reset if drifted past top
+        if (p.y < 0) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+
+        // Gentle cursor push effect
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 80) {
+          p.x += (dx / dist) * 1.2;
+          p.y += (dy / dist) * 1.2;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
+      });
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <section id="home" className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-8 pb-16 px-4 sm:px-6 lg:px-8">
+    <section id="home" className="relative min-h-screen -mt-[84px] pt-28 sm:pt-32 pb-16 flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* 8-second Looping DNA Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -26,6 +110,12 @@ export default function HeroSection() {
         >
           <source src="/dna.mp4" type="video/mp4" />
         </video>
+
+        {/* Ambient Bioluminescent Particle Canvas Layer */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full pointer-events-none z-[5]"
+        />
 
         {/* Cyber Dark Gradient Overlays for High Legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#090717]/90 via-[#090717]/70 to-[#090717] z-10" />
@@ -119,14 +209,14 @@ export default function HeroSection() {
             <span>Meet The Team</span>
           </Link>
 
-          {/* Upcoming & Past Events */}
+          {/* Upcoming & Past Events Modal Trigger */}
           <button
             type="button"
-            onClick={() => scrollToSection('events')}
-            className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-[var(--text-muted)] hover:text-white hover:border-white/20 font-space text-sm transition-all cursor-pointer"
+            onClick={() => setIsEventModalOpen(true)}
+            className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-[var(--text-muted)] hover:text-white hover:border-white/20 font-space text-sm transition-all cursor-pointer group active:scale-95"
           >
-            <Sparkles className="w-4 h-4 text-[var(--accent-green)]" />
-            <span>Club Events</span>
+            <Sparkles className="w-4 h-4 text-[var(--accent-green)] group-hover:rotate-12 transition-transform" />
+            <span>Club Events & Pass</span>
           </button>
         </motion.div>
 
@@ -148,8 +238,13 @@ export default function HeroSection() {
             <ChevronDown className="w-4 h-4 text-[var(--accent-cyan)]" />
           </motion.div>
         </motion.div>
-
       </div>
+
+      {/* Interactive Event Pass Modal */}
+      <EventPassModal
+        isOpen={isEventModalOpen}
+        onClose={() => setIsEventModalOpen(false)}
+      />
     </section>
   );
 }

@@ -9,7 +9,6 @@ import EventsSection from '../components/home/EventsSection';
 import MilestonesSection from '../components/home/MilestonesSection';
 import FaqSection from '../components/home/FaqSection';
 import JoinSection from '../components/home/JoinSection';
-import AffiliationsSection from '../components/home/AffiliationsSection';
 
 function HomePage() {
   return (
@@ -43,9 +42,6 @@ function HomePage() {
 
       {/* 10. Join Us & Direct Inquiry Terminal */}
       <JoinSection />
-
-      {/* 11. Academic & Institutional Affiliations */}
-      <AffiliationsSection />
     </main>
   );
 }
