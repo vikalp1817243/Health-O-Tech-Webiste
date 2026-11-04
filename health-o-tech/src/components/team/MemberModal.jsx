@@ -105,21 +105,21 @@ export default function MemberModal({ member, onClose }) {
           </div>
 
           {/* Name & Role */}
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h3 className="font-orbitron text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             {member.name}
           </h3>
-          <p className="text-emerald-400 font-semibold text-sm sm:text-base mt-1">
+          <p className="font-space text-[var(--accent-cyan)] font-semibold text-sm sm:text-base mt-1">
             {member.role}
           </p>
           {member.team_name && (
-            <p className="text-xs text-gray-400 font-medium mt-0.5">
+            <p className="font-space text-xs text-[var(--accent-green)] font-medium mt-0.5 uppercase tracking-wider">
               {member.team_name}
             </p>
           )}
 
           {/* Tagline / Bio */}
           {member.tagline && (
-            <div className="mt-4 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-gray-300 text-sm max-w-sm leading-relaxed">
+            <div className="mt-4 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-neutral-300 font-space text-xs sm:text-sm max-w-sm leading-relaxed">
               "{member.tagline}"
             </div>
           )}

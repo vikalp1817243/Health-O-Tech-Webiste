@@ -32,16 +32,17 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
       {/* SVG Marker Definitions for Crisp Flowchart Arrows */}
       <svg className="absolute w-0 h-0" aria-hidden="true">
         <defs>
+          {/* Arrow pointing along path (+X direction in marker coords rotates to point DOWN on downward lines) */}
           <marker
             id="eraser-arrow-down"
             viewBox="0 0 10 10"
-            refX="5"
-            refY="9"
+            refX="7"
+            refY="5"
             markerWidth="6"
             markerHeight="6"
             orient="auto"
           >
-            <path d="M 0 0 L 5 9 L 10 0 z" fill="#a3a3a3" />
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#00C8FF" />
           </marker>
           <marker
             id="eraser-arrow-right"
@@ -52,7 +53,7 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
             markerHeight="5"
             orient="auto"
           >
-            <path d="M 0 0 L 9 5 L 0 10 z" fill="#a3a3a3" />
+            <path d="M 0 0 L 9 5 L 0 10 z" fill="#00E676" />
           </marker>
         </defs>
       </svg>
@@ -65,16 +66,17 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
         <button
           type="button"
           onClick={() => president && onSelectMember(president)}
-          className="w-48 sm:w-56 py-3.5 px-4 rounded-xl border border-neutral-600 bg-neutral-900/90 hover:border-emerald-400 hover:bg-neutral-800/95 transition-all text-center shadow-lg group cursor-pointer active:scale-95"
+          className="w-48 sm:w-60 py-3.5 px-4 rounded-2xl border border-amber-500/40 bg-[var(--surface-card)] backdrop-blur-xl hover:border-amber-400 hover:shadow-[0_0_25px_rgba(245,158,11,0.3)] transition-all text-center shadow-lg group cursor-pointer active:scale-95"
         >
-          <div className="text-sm sm:text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
+          <div className="font-orbitron text-xs sm:text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors uppercase tracking-wider">
             President
           </div>
           {president && (
-            <div className="text-xs text-neutral-400 font-medium mt-0.5 truncate">
+            <div className="font-space text-sm sm:text-base text-white font-bold mt-1 truncate">
               {president.name}
             </div>
           )}
+          <span className="font-space text-[10px] text-amber-400/80 block mt-0.5">Level 0 • Executive Head</span>
         </button>
 
         {/* Down Arrow: President -> Vice-President */}
@@ -85,8 +87,8 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
               y1="2"
               x2="12"
               y2="28"
-              stroke="#a3a3a3"
-              strokeWidth="1.5"
+              stroke="#00C8FF"
+              strokeWidth="2"
               markerEnd="url(#eraser-arrow-down)"
             />
           </svg>
@@ -96,16 +98,17 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
         <button
           type="button"
           onClick={() => vicePresident && onSelectMember(vicePresident)}
-          className="w-48 sm:w-56 py-3.5 px-4 rounded-xl border border-neutral-600 bg-neutral-900/90 hover:border-cyan-400 hover:bg-neutral-800/95 transition-all text-center shadow-lg group cursor-pointer active:scale-95"
+          className="w-48 sm:w-60 py-3.5 px-4 rounded-2xl border border-[var(--accent-cyan)]/40 bg-[var(--surface-card)] backdrop-blur-xl hover:border-[var(--accent-cyan)] hover:shadow-[0_0_25px_rgba(0,200,255,0.3)] transition-all text-center shadow-lg group cursor-pointer active:scale-95"
         >
-          <div className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-400 transition-colors">
+          <div className="font-orbitron text-xs sm:text-sm font-bold text-[var(--accent-cyan)] group-hover:text-cyan-200 transition-colors uppercase tracking-wider">
             Vice-President
           </div>
           {vicePresident && (
-            <div className="text-xs text-neutral-400 font-medium mt-0.5 truncate">
+            <div className="font-space text-sm sm:text-base text-white font-bold mt-1 truncate">
               {vicePresident.name}
             </div>
           )}
+          <span className="font-space text-[10px] text-[var(--accent-cyan)]/80 block mt-0.5">Level 1 • Executive Director</span>
         </button>
 
         {/* Down Arrow: Vice-President -> General Secretary */}
@@ -116,8 +119,8 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
               y1="2"
               x2="12"
               y2="28"
-              stroke="#a3a3a3"
-              strokeWidth="1.5"
+              stroke="#00C8FF"
+              strokeWidth="2"
               markerEnd="url(#eraser-arrow-down)"
             />
           </svg>
@@ -127,16 +130,17 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
         <button
           type="button"
           onClick={() => generalSecretary && onSelectMember(generalSecretary)}
-          className="w-48 sm:w-56 py-3.5 px-4 rounded-xl border border-neutral-600 bg-neutral-900/90 hover:border-purple-400 hover:bg-neutral-800/95 transition-all text-center shadow-lg group cursor-pointer active:scale-95"
+          className="w-48 sm:w-60 py-3.5 px-4 rounded-2xl border border-purple-500/40 bg-[var(--surface-card)] backdrop-blur-xl hover:border-purple-400 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] transition-all text-center shadow-lg group cursor-pointer active:scale-95"
         >
-          <div className="text-sm sm:text-base font-bold text-white group-hover:text-purple-400 transition-colors">
+          <div className="font-orbitron text-xs sm:text-sm font-bold text-purple-300 group-hover:text-purple-200 transition-colors uppercase tracking-wider">
             General Secretary
           </div>
           {generalSecretary && (
-            <div className="text-xs text-neutral-400 font-medium mt-0.5 truncate">
+            <div className="font-space text-sm sm:text-base text-white font-bold mt-1 truncate">
               {generalSecretary.name}
             </div>
           )}
+          <span className="font-space text-[10px] text-purple-400/80 block mt-0.5">Level 2 • Operations & Governance</span>
         </button>
 
         {/* Down Arrow to Main Horizontal Branch Line */}
@@ -147,8 +151,8 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
               y1="2"
               x2="12"
               y2="26"
-              stroke="#a3a3a3"
-              strokeWidth="1.5"
+              stroke="#00C8FF"
+              strokeWidth="2"
               markerEnd="url(#eraser-arrow-down)"
             />
           </svg>
@@ -171,8 +175,9 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
                 y1="4"
                 x2="1170"
                 y2="4"
-                stroke="#a3a3a3"
-                strokeWidth="1.5"
+                stroke="#00C8FF"
+                strokeWidth="2"
+                strokeOpacity="0.8"
               />
 
               {/* 7 Vertical down branches into each column */}
@@ -183,8 +188,8 @@ export default function EraserHierarchyChart({ members, onSelectMember }) {
                   y1="4"
                   x2={cx}
                   y2="26"
-                  stroke="#a3a3a3"
-                  strokeWidth="1.5"
+                  stroke="#00C8FF"
+                  strokeWidth="2"
                   markerEnd="url(#eraser-arrow-down)"
                 />
               ))}
