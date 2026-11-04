@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@layer base {
+  :root, html, body {
+    /* Dark Theme - Deep Space Cyberpunk Biopunk (Default) */
+    --bg: #090717;
+    --surface: #130F29;
+    --surface-alt: #1B1538;
+    --surface-card: rgba(19, 15, 41, 0.75);
+    --text: #E8F4FD;
+    --text-muted: #8E9AB6;
+    --accent: #00C8FF;
+    --accent-cyan: #00C8FF;
+    --accent-green: #00E676;
+    --accent-purple: #A855F7;
+    --border: #231E48;
+    --border-accent: rgba(0, 200, 255, 0.35);
+    --glow-cyan: 0 0 25px rgba(0, 200, 255, 0.45);
+    --glow-green: 0 0 20px rgba(0, 230, 118, 0.4);
+    --card-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.6);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  }
+}
+
+/* Custom font utilities */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Cyber & Glow utility classes */
+.glow-cyan {
+  box-shadow: var(--glow-cyan);
+}
+
+.glow-green {
+  box-shadow: var(--glow-green);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 14px rgba(0, 200, 255, 0.7);
+}
+
+.glow-text-green {
+  text-shadow: 0 0 14px rgba(0, 230, 118, 0.7);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
+}
+
+/* Glassmorphism cyber cards */
+.cyber-card {
+  background: var(--surface-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-accent);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* Circuit pattern background overlay */
+.circuit-bg {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(0, 230, 118, 0.05) 0%, transparent 25%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+.light .circuit-bg {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 112, 204, 0.04) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(0, 153, 77, 0.04) 0%, transparent 25%),
+    linear-gradient(to right, rgba(0, 20, 80, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 20, 80, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Custom cyber scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
