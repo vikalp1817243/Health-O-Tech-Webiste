@@ -163,6 +163,8 @@ export default function EventsSection() {
               <img
                 src={runRiotPhotos[activePhotoIdx].src}
                 alt={runRiotPhotos[activePhotoIdx].caption}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
@@ -188,7 +190,7 @@ export default function EventsSection() {
                       : 'border-white/10 opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={photo.src} alt="" className="w-full h-full object-cover" />
+                  <img src={photo.src} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

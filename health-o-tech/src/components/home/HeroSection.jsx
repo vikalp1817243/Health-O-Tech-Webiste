@@ -20,6 +20,8 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          preload="auto"
+          poster="/banner.jpg"
           className="w-full h-full object-cover opacity-40 filter saturate-150 contrast-125 scale-105"
         >
           <source src="/dna.mp4" type="video/mp4" />
