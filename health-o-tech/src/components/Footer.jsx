@@ -94,6 +94,11 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="hover:text-[var(--accent-cyan)] transition-colors">
+                  Projects & R&D
+                </a>
+              </li>
+              <li>
                 <a href="#events" onClick={(e) => scrollToSection(e, 'events')} className="hover:text-[var(--accent-cyan)] transition-colors">
                   Events & Run Riot
                 </a>

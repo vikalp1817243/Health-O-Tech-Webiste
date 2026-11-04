@@ -3,6 +3,7 @@ import HeroSection from '../components/home/HeroSection';
 import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
 import DomainsSection from '../components/home/DomainsSection';
+import ProjectsSection from '../components/home/ProjectsSection';
 import EventsSection from '../components/home/EventsSection';
 import MilestonesSection from '../components/home/MilestonesSection';
 import FaqSection from '../components/home/FaqSection';
@@ -23,16 +24,19 @@ function HomePage() {
       {/* 4. Core Domains & Verticals */}
       <DomainsSection />
 
-      {/* 5. Featured Events (Run Riot '26 & Tech Summits) */}
+      {/* 5. Flagship Student Projects & Innovations */}
+      <ProjectsSection />
+
+      {/* 6. Featured Events (Run Riot '26 & Tech Summits) */}
       <EventsSection />
 
-      {/* 6. Club Milestones & Achievements */}
+      {/* 7. Club Milestones & Achievements */}
       <MilestonesSection />
 
-      {/* 7. FAQ Accordion */}
+      {/* 8. FAQ Accordion */}
       <FaqSection />
 
-      {/* 8. Join Us / Community CTA */}
+      {/* 9. Join Us & Direct Inquiry Terminal */}
       <JoinSection />
     </main>
   );
