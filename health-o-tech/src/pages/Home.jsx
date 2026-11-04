@@ -4,24 +4,32 @@ import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
 import DomainsSection from '../components/home/DomainsSection';
 import EventsSection from '../components/home/EventsSection';
+import MilestonesSection from '../components/home/MilestonesSection';
+import JoinSection from '../components/home/JoinSection';
 
 function HomePage() {
   return (
     <main className="w-full">
-      {/* Hero Section with DNA Video */}
+      {/* 1. Hero Section with DNA Video */}
       <HeroSection />
 
-      {/* Stats Bar */}
+      {/* 2. Stats Bar */}
       <StatsBar />
 
-      {/* About Section with Official Banner & 3 Pillars */}
+      {/* 3. About Section with Official Banner & 3 Pillars */}
       <AboutSection />
 
-      {/* Core Domains & Verticals */}
+      {/* 4. Core Domains & Verticals */}
       <DomainsSection />
 
-      {/* Featured Events (Run Riot '26 & Tech Summits) */}
+      {/* 5. Featured Events (Run Riot '26 & Tech Summits) */}
       <EventsSection />
+
+      {/* 6. Club Milestones & Achievements */}
+      <MilestonesSection />
+
+      {/* 7. Join Us / Community CTA */}
+      <JoinSection />
     </main>
   );
 }

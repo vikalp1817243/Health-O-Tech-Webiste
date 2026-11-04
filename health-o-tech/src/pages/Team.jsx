@@ -71,27 +71,27 @@ create policy "Allow public read access" on team_members
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0f12] text-white pt-8 pb-20 px-3 sm:px-6 selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen bg-[var(--bg)] text-white pt-8 pb-20 px-3 sm:px-6 selection:bg-[var(--accent-cyan)] selection:text-black circuit-bg">
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 backdrop-blur-md mb-4">
-            <Network className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-gray-300 backdrop-blur-md mb-4 font-space">
+            <Network className="w-3.5 h-3.5 text-[var(--accent-cyan)]" />
             <span>Organizational Hierarchy Flowchart</span>
             <span className="w-1 h-1 rounded-full bg-gray-500" />
             <span className="flex items-center gap-1.5 text-[11px]">
-              <span className={`w-2 h-2 rounded-full ${isSupabaseConfigured ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'}`} />
+              <span className={`w-2 h-2 rounded-full ${isSupabaseConfigured ? 'bg-[var(--accent-green)] shadow-[0_0_8px_rgba(0,230,118,0.8)]' : 'bg-amber-400 animate-pulse'}`} />
               {isSupabaseConfigured ? 'Supabase Connected' : 'Demo / Supabase Ready'}
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-            Team <span className="text-emerald-400">Flowchart</span>
+          <h1 className="font-orbitron text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-2">
+            TEAM <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)]">FLOWCHART</span>
           </h1>
 
-          <p className="text-neutral-400 text-xs sm:text-sm">
-            Click on any role or member box to view their photo, bio, and contact links.
+          <p className="font-space text-[var(--text-muted)] text-xs sm:text-sm">
+            Interactive organizational structure of the Health-O-Tech Club. Click on any role or member box to inspect photo, bio, and social channels.
           </p>
 
           {/* Quick Buttons: Supabase & Click Hint */}
@@ -99,12 +99,12 @@ create policy "Allow public read access" on team_members
             <button
               type="button"
               onClick={() => setShowSqlGuide(!showSqlGuide)}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-gray-300 hover:text-white transition-all shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/5 hover:bg-white/10 border border-[var(--border-accent)] text-xs font-medium text-gray-300 hover:text-white transition-all shadow-sm cursor-pointer"
             >
-              <Database className="w-3 h-3 text-cyan-400" />
+              <Database className="w-3 h-3 text-[var(--accent-cyan)]" />
               <span>{showSqlGuide ? 'Hide Supabase Guide' : 'Supabase Postgres Setup'}</span>
             </button>
-            <div className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
+            <div className="inline-flex items-center gap-1.5 text-[11px] text-[var(--accent-green)] bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
               <Info className="w-3 h-3" />
               <span>Click on any box to open details popup</span>
             </div>
