@@ -40,3 +40,6 @@ Thumbs.db
 .vite
 .cache
 .eslintcache
+
+# Local compatibility symlink
+health-o-tech
