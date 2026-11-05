@@ -40,3 +40,8 @@ Thumbs.db
 .vite
 .cache
 .eslintcache
+
+# Demo data & helper generation scripts
+demo_sheets/
+scripts/
+
