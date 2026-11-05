@@ -37,7 +37,6 @@ export default function ScrollToTop() {
           title="Back to Top"
         >
           <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[var(--accent-green)] animate-ping" />
         </motion.button>
       )}
     </AnimatePresence>

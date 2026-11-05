@@ -124,7 +124,7 @@ export default function JoinSection() {
                   <Terminal className="w-4 h-4 text-[var(--accent-green)]" />
                   <span className="font-mono uppercase tracking-wider font-semibold">Direct Inquiry Terminal</span>
                 </div>
-                <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] animate-ping" />
+                <span className="w-2 h-2 rounded-full bg-[var(--accent-green)]" />
               </div>
 
               {submitted ? (

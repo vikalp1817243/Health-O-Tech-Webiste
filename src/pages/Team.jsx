@@ -59,7 +59,7 @@ export default function TeamPage() {
             <span className="font-semibold tracking-wider uppercase text-[11px]">
               Executive Directorate & Specialized Divisions
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" />
           </div>
 
           <h1 className="font-orbitron text-3xl sm:text-5xl font-black tracking-tight text-white mb-3">

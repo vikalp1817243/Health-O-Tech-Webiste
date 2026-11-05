@@ -1,3 +1,4 @@
+// MARKED FOR REMOVAL UPON USER REQUEST: BioTelemetryBar component
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Heart, Shield, Radio } from 'lucide-react';

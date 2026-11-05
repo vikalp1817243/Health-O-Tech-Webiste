@@ -6,15 +6,12 @@ import {
   Sparkles, 
   Flame, 
   ExternalLink,
-  X,
-  Ticket
+  X
 } from 'lucide-react';
-import EventPassModal from './EventPassModal';
 
 export default function EventsSection() {
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [previewPhoto, setPreviewPhoto] = useState(null);
-  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 
   const runRiotPhotos = [
     { src: '/events/run-riot-26/run1.jpg', caption: 'Run Riot \'26 Opening Ceremony & Flag-Off' },
@@ -145,15 +142,6 @@ export default function EventsSection() {
                 </div>
               </div>
 
-              {/* Pre-Book / Pass Action */}
-              <button
-                type="button"
-                onClick={() => setIsEventModalOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)] text-black font-space font-bold text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(0,200,255,0.3)] hover:shadow-[0_0_30px_rgba(0,230,118,0.5)] active:scale-95 transition-all cursor-pointer mb-4"
-              >
-                <Ticket className="w-4 h-4 text-black" />
-                <span>Pre-Book Run Riot '27 Pass</span>
-              </button>
             </div>
 
             {/* Quick Caption */}
@@ -296,13 +284,6 @@ export default function EventsSection() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Event Pass Modal */}
-      <EventPassModal
-        isOpen={isEventModalOpen}
-        onClose={() => setIsEventModalOpen(false)}
-        defaultEventName="Run Riot '27 Marathon & Health Tech"
-      />
     </section>
   );
 }

@@ -1,3 +1,4 @@
+// MARKED FOR REMOVAL UPON USER REQUEST: StatsBar component
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Calendar, Cpu, Award } from 'lucide-react';

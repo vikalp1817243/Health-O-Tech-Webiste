@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Dna, Activity, ChevronDown, Sparkles } from 'lucide-react';
-import EventPassModal from './EventPassModal';
 import { smoothScrollTo } from '../../lib/utils';
 
 export default function HeroSection() {
-  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const canvasRef = useRef(null);
 
   // High-performance Bioluminescent Particle Field (36 particles) with High-DPI support
@@ -142,7 +140,7 @@ export default function HeroSection() {
           <span className="font-semibold tracking-wider uppercase text-[11px] sm:text-xs text-[var(--text)]">
             Health Informatics & Bio-Tech Innovations
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-ping" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" />
         </motion.div>
 
         {/* Central Logo Emblem with Cyber Holographic Frame */}
@@ -211,14 +209,14 @@ export default function HeroSection() {
             <span>Meet The Team</span>
           </Link>
 
-          {/* Upcoming & Past Events Modal Trigger */}
+          {/* Upcoming & Past Events Section Trigger */}
           <button
             type="button"
-            onClick={() => setIsEventModalOpen(true)}
+            onClick={() => smoothScrollTo('events')}
             className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-[var(--text-muted)] hover:text-white hover:border-white/20 font-space text-sm transition-all cursor-pointer group active:scale-95"
           >
             <Sparkles className="w-4 h-4 text-[var(--accent-green)] group-hover:rotate-12 transition-transform" />
-            <span>Club Events & Pass</span>
+            <span>Club Events</span>
           </button>
         </motion.div>
 
@@ -241,12 +239,6 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Interactive Event Pass Modal */}
-      <EventPassModal
-        isOpen={isEventModalOpen}
-        onClose={() => setIsEventModalOpen(false)}
-      />
     </section>
   );
 }

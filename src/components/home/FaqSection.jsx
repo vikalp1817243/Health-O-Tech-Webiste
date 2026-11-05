@@ -64,7 +64,7 @@ export default function FaqSection() {
         </motion.p>
       </div>
 
-      {/* Accordion List */}
+      {/* Sticky Stacking Cards Accordion List */}
       <motion.div
         variants={{
           hidden: { opacity: 0 },
@@ -76,7 +76,7 @@ export default function FaqSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
-        className="flex flex-col gap-3.5"
+        className="relative flex flex-col pb-20"
       >
         {faqs.map((faq, idx) => {
           const isOpen = openIdx === idx;
@@ -91,10 +91,15 @@ export default function FaqSection() {
                   transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
                 },
               }}
-              className={`rounded-2xl border transition-[border-color,background-color,box-shadow] duration-200 overflow-hidden ${
+              style={{
+                top: `${84 + idx * 24}px`,
+                zIndex: 10 + idx,
+                marginBottom: idx === faqs.length - 1 ? '0' : '36px',
+              }}
+              className={`sticky rounded-2xl border transition-[border-color,background-color,box-shadow] duration-200 shadow-[0_12px_40px_rgba(0,0,0,0.85)] backdrop-blur-2xl overflow-hidden ${
                 isOpen
-                  ? 'bg-[var(--surface-card)] border-[var(--accent-cyan)] shadow-[0_0_20px_rgba(0,200,255,0.15)]'
-                  : 'bg-[var(--surface-card)]/70 border-[var(--border-accent)] hover:border-white/20'
+                  ? 'bg-[#130E30] border-[var(--accent-cyan)] shadow-[0_0_25px_rgba(0,200,255,0.25)]'
+                  : 'bg-[#0E0A24] border-[var(--border-accent)] hover:border-white/20'
               }`}
             >
               <button
@@ -104,9 +109,14 @@ export default function FaqSection() {
                 onClick={() => setOpenIdx(isOpen ? -1 : idx)}
                 className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer focus:outline-none"
               >
-                <span className="font-orbitron font-bold text-sm sm:text-base text-white pr-4">
-                  {faq.q}
-                </span>
+                <div className="flex items-center gap-3 pr-4">
+                  <span className="font-space text-xs font-mono text-[var(--accent-cyan)] shrink-0">
+                    0{idx + 1}
+                  </span>
+                  <span className="font-orbitron font-bold text-sm sm:text-base text-white">
+                    {faq.q}
+                  </span>
+                </div>
                 <div
                   className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-200 ${
                     isOpen

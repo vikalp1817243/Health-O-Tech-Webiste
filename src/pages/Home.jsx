@@ -1,8 +1,8 @@
 import HeroSection from '../components/home/HeroSection';
-import BioTelemetryBar from '../components/home/BioTelemetryBar';
-import StatsBar from '../components/home/StatsBar';
+// MARKED FOR REMOVAL UPON USER REQUEST:
+// import BioTelemetryBar from '../components/home/BioTelemetryBar';
+// import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
-import AffiliationsSection from '../components/home/AffiliationsSection';
 import DomainsSection from '../components/home/DomainsSection';
 import ProjectsSection from '../components/home/ProjectsSection';
 import EventsSection from '../components/home/EventsSection';
@@ -16,17 +16,12 @@ function HomePage() {
       {/* 1. Hero Section with DNA Video */}
       <HeroSection />
 
-      {/* 2. Live Interactive Bio-Signal ECG Telemetry Canvas */}
-      <BioTelemetryBar />
-
-      {/* 3. Stats Bar */}
-      <StatsBar />
+      {/* MARKED FOR REMOVAL UPON USER REQUEST: 2. Live Bio-Signal ECG & 3. Stats Bar */}
+      {/* <BioTelemetryBar /> */}
+      {/* <StatsBar /> */}
 
       {/* 4. About Section with Official Banner & 3 Pillars */}
       <AboutSection />
-
-      {/* 4.5 Academic & Institutional Affiliations */}
-      <AffiliationsSection />
 
       {/* 5. Core Domains & Verticals */}
       <DomainsSection />
