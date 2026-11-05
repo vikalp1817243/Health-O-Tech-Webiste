@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X, Mail, Crown, Shield, Award, Sparkles, User, ExternalLink } from 'lucide-react';
 
 const LEVEL_CONFIG = {
@@ -117,10 +117,31 @@ export default function MemberModal({ member, onClose }) {
             </p>
           )}
 
-          {/* Tagline / Bio */}
+          {/* Tagline / Personal Quote */}
           {member.tagline && (
             <div className="mt-4 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-neutral-300 font-space text-xs sm:text-sm max-w-sm leading-relaxed">
               "{member.tagline}"
+            </div>
+          )}
+
+          {/* Academic Profile Badges (Branch, Batch, Registration Number) */}
+          {(member.registration_number || member.batch || member.branch) && (
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-3.5 max-w-sm">
+              {member.branch && (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/30 text-[11px] font-space text-[var(--accent-cyan)]">
+                  {member.branch}
+                </span>
+              )}
+              {member.batch && (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/30 text-[11px] font-space text-[var(--accent-green)]">
+                  Batch {member.batch}
+                </span>
+              )}
+              {member.registration_number && (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-neutral-300">
+                  {member.registration_number}
+                </span>
+              )}
             </div>
           )}
 

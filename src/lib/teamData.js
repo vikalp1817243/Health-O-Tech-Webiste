@@ -543,6 +543,19 @@ export const INITIAL_TEAM_MEMBERS = [
   },
 ];
 
+/**
+ * Resolves raw Google Drive sharing or view links into direct, high-speed CDN image URLs.
+ */
+export function convertGoogleDriveUrl(url) {
+  if (!url) return '';
+  const str = String(url).trim();
+  const match = str.match(/(?:id=|\/d\/|file\/d\/)([a-zA-Z0-9_-]{20,})/i);
+  if (match && match[1]) {
+    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+  }
+  return str;
+}
+
 export async function fetchTeamMembers() {
   if (isSupabaseConfigured && supabase) {
     try {
@@ -566,3 +579,53 @@ export async function fetchTeamMembers() {
   }
   return INITIAL_TEAM_MEMBERS;
 }
+
+/**
+ * Fetches team members for a given tenure or the latest batch.
+ * Priority: Google Sheets (Drive Folder API) -> Supabase -> Local Static Data
+ */
+export async function fetchTeamData(tenure = '') {
+  const apiUrl = import.meta.env.VITE_GOOGLE_SHEETS_API_URL;
+
+  if (apiUrl) {
+    try {
+      const queryParam = tenure ? `?tenure=${encodeURIComponent(tenure)}` : '';
+      const response = await fetch(`${apiUrl}${queryParam}`);
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result && result.members && result.members.length > 0) {
+          const sanitizedMembers = result.members.map((m) => ({
+            ...m,
+            photo_url: convertGoogleDriveUrl(m.photo_url),
+            level: typeof m.level === 'number' ? m.level : 5,
+          }));
+
+          return {
+            tenures: result.tenures || (result.currentTenure ? [result.currentTenure] : []),
+            currentTenure: result.currentTenure || tenure || (result.tenures && result.tenures[0]) || 'Current Batch',
+            members: sanitizedMembers,
+            source: 'sheets',
+          };
+        }
+      } else {
+        console.warn('Google Sheets API returned non-OK status:', response.status);
+      }
+    } catch (err) {
+      console.warn('Failed to fetch from Google Sheets API, falling back:', err);
+    }
+  }
+
+  // Fallback: Supabase or local initial members
+  const fallbackMembers = await fetchTeamMembers();
+  return {
+    tenures: ['Current Batch (2025-26)'],
+    currentTenure: 'Current Batch (2025-26)',
+    members: fallbackMembers.map((m) => ({
+      ...m,
+      photo_url: convertGoogleDriveUrl(m.photo_url),
+    })),
+    source: 'fallback',
+  };
+}
+
