@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   BrainCircuit, 
@@ -7,8 +6,6 @@ import {
   Database, 
   Bot, 
   Glasses, 
-  ArrowUpRight, 
-  Sparkles,
   Layers
 } from 'lucide-react';
 
@@ -178,9 +175,9 @@ export default function DomainsSection() {
 
               {/* Tags */}
               <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-                {domain.tags.map((tag, tIdx) => (
+                {domain.tags.map((tag) => (
                   <span
-                    key={tIdx}
+                    key={tag}
                     className="font-space text-[10px] px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[var(--text-muted)] group-hover:border-white/20 transition-colors"
                   >
                     {tag}

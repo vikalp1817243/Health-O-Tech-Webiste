@@ -1,4 +1,3 @@
-import React from 'react';
 import { TEAMS_LIST } from '../../lib/teamData';
 
 export default function EraserHierarchyChart({ members, onSelectMember }) {

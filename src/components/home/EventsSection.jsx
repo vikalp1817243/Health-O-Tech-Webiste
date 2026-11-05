@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Calendar, 
   MapPin, 
-  Users, 
-  Trophy, 
   Sparkles, 
   Flame, 
   ExternalLink,
-  ChevronLeft,
-  ChevronRight,
   X,
   Ticket
 } from 'lucide-react';
 import EventPassModal from './EventPassModal';
 
 export default function EventsSection() {
-  const [activeTab, setActiveTab] = useState('flagship'); // 'flagship' | 'all'
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [previewPhoto, setPreviewPhoto] = useState(null);
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
@@ -195,7 +190,7 @@ export default function EventsSection() {
             <div className="grid grid-cols-4 gap-2">
               {runRiotPhotos.map((photo, pIdx) => (
                 <button
-                  key={pIdx}
+                  key={photo.src}
                   type="button"
                   onClick={() => setActivePhotoIdx(pIdx)}
                   className={`relative aspect-video rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${

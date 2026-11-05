@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Heart, Shield, Radio, Sparkles } from 'lucide-react';
+import { Activity, Heart, Shield, Radio } from 'lucide-react';
 
 export default function BioTelemetryBar() {
   const canvasRef = useRef(null);
@@ -10,28 +10,36 @@ export default function BioTelemetryBar() {
   // Subtle real-time heart rate variation
   useEffect(() => {
     const interval = setInterval(() => {
-      setBpm(prev => 70 + Math.floor(Math.random() * 5));
-      setSpo2(prev => (Math.random() > 0.5 ? 98 : 99));
+      setBpm(70 + Math.floor(Math.random() * 5));
+      setSpo2(Math.random() > 0.5 ? 98 : 99);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
 
-  // Real-time Canvas ECG / EKG Waveform Drawing
+  // Real-time Canvas ECG / EKG Waveform Drawing with High-DPI support
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
+    let dpr = window.devicePixelRatio || 1;
+    let width = canvas.offsetWidth;
+    let height = canvas.offsetHeight;
 
-    const handleResize = () => {
+    const setupCanvas = () => {
       if (!canvas) return;
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
+      dpr = window.devicePixelRatio || 1;
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     };
-    window.addEventListener('resize', handleResize);
+
+    setupCanvas();
+    window.addEventListener('resize', setupCanvas);
 
     let x = 0;
     let step = 0;
@@ -113,7 +121,7 @@ export default function BioTelemetryBar() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', setupCanvas);
     };
   }, []);
 

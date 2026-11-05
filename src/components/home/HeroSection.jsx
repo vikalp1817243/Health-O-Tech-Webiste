@@ -1,35 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Dna, Activity, ChevronDown, Sparkles } from 'lucide-react';
 import EventPassModal from './EventPassModal';
+import { smoothScrollTo } from '../../lib/utils';
 
 export default function HeroSection() {
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const canvasRef = useRef(null);
 
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // High-performance Bioluminescent Particle Field (35 particles)
+  // High-performance Bioluminescent Particle Field (36 particles) with High-DPI support
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
+    let dpr = window.devicePixelRatio || 1;
+    let width = canvas.offsetWidth;
+    let height = canvas.offsetHeight;
 
-    const handleResize = () => {
+    const setupCanvas = () => {
       if (!canvas) return;
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
+      dpr = window.devicePixelRatio || 1;
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     };
-    window.addEventListener('resize', handleResize);
+
+    setupCanvas();
+    window.addEventListener('resize', setupCanvas);
 
     const particles = Array.from({ length: 36 }, () => ({
       x: Math.random() * width,
@@ -89,7 +91,7 @@ export default function HeroSection() {
     render();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', setupCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
@@ -192,7 +194,7 @@ export default function HeroSection() {
           {/* Explore Domains Button */}
           <button
             type="button"
-            onClick={() => scrollToSection('domains')}
+            onClick={() => smoothScrollTo('domains')}
             className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)] text-black font-space font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,200,255,0.4)] hover:shadow-[0_0_35px_rgba(0,230,118,0.6)] hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
           >
             <Activity className="w-4 h-4 text-black group-hover:rotate-12 transition-transform" />
@@ -226,7 +228,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
           className="mt-14 flex flex-col items-center gap-2 cursor-pointer group"
-          onClick={() => scrollToSection('about')}
+          onClick={() => smoothScrollTo('about')}
         >
           <span className="font-space text-[10px] tracking-[0.25em] text-[var(--text-muted)] uppercase group-hover:text-[var(--accent-cyan)] transition-colors">
             Scroll To Discover

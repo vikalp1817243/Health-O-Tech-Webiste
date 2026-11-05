@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { HelpCircle, ChevronDown } from 'lucide-react';
 
 export default function FaqSection() {
   const [openIdx, setOpenIdx] = useState(0);
@@ -78,9 +78,8 @@ export default function FaqSection() {
         viewport={{ once: true, amount: 0.15 }}
         className="flex flex-col gap-3.5"
       >
-        {faqs.map((faq) => {
-          const isOpen = openIdx === faqs.indexOf(faq);
-          const currentIdx = faqs.indexOf(faq);
+        {faqs.map((faq, idx) => {
+          const isOpen = openIdx === idx;
           return (
             <motion.div
               key={faq.q}
@@ -100,7 +99,9 @@ export default function FaqSection() {
             >
               <button
                 type="button"
-                onClick={() => setOpenIdx(isOpen ? -1 : currentIdx)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${idx}`}
+                onClick={() => setOpenIdx(isOpen ? -1 : idx)}
                 className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer focus:outline-none"
               >
                 <span className="font-orbitron font-bold text-sm sm:text-base text-white pr-4">
@@ -120,6 +121,7 @@ export default function FaqSection() {
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
+                    id={`faq-answer-${idx}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

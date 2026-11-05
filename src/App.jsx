@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/Home';
-import TeamPage from './pages/Team';
 import ScrollToTop from './components/ScrollToTop';
+
+const TeamPage = lazy(() => import('./pages/Team'));
 
 // Automatic reset to top on SPA route changes
 function ScrollToTopOnRoute() {
@@ -47,7 +48,15 @@ function AnimatedRoutes() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.28, ease: 'easeOut' }}
             >
-              <TeamPage />
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center font-orbitron text-xs text-[var(--accent-cyan)] animate-pulse">
+                    LOADING HEALTH-O-TECH ROSTER...
+                  </div>
+                }
+              >
+                <TeamPage />
+              </Suspense>
             </motion.div>
           }
         />

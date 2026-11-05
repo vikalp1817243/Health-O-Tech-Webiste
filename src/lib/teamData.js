@@ -1,4 +1,59 @@
 
+import { Crown, Shield, Award, Sparkles, User } from 'lucide-react';
+
+export const LEVEL_CONFIG = {
+  0: {
+    label: "Level 0 • Executive Head",
+    borderColor: "border-amber-500/50 hover:border-amber-400",
+    badgeBg: "bg-amber-500/15 text-amber-300 border-amber-500/40",
+    glow: "hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]",
+    modalGlow: "shadow-[0_0_50px_rgba(245,158,11,0.25)]",
+    border: "border-amber-500/50",
+    icon: Crown,
+    cardBg: "from-amber-950/30 via-neutral-900/90 to-neutral-950/90",
+  },
+  1: {
+    label: "Level 1 • Executive Director",
+    borderColor: "border-cyan-500/50 hover:border-cyan-400",
+    badgeBg: "bg-cyan-500/15 text-cyan-300 border-cyan-500/40",
+    glow: "hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]",
+    modalGlow: "shadow-[0_0_50px_rgba(6,182,212,0.25)]",
+    border: "border-cyan-500/50",
+    icon: Shield,
+    cardBg: "from-cyan-950/30 via-neutral-900/90 to-neutral-950/90",
+  },
+  2: {
+    label: "Level 2 • General Administration",
+    borderColor: "border-purple-500/50 hover:border-purple-400",
+    badgeBg: "bg-purple-500/15 text-purple-300 border-purple-500/40",
+    glow: "hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]",
+    modalGlow: "shadow-[0_0_50px_rgba(168,85,247,0.25)]",
+    border: "border-purple-500/50",
+    icon: Award,
+    cardBg: "from-purple-950/30 via-neutral-900/90 to-neutral-950/90",
+  },
+  4: {
+    label: "Level 4 • Department Leadership",
+    borderColor: "border-emerald-500/40 hover:border-emerald-400",
+    badgeBg: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
+    glow: "hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]",
+    modalGlow: "shadow-[0_0_50px_rgba(16,185,129,0.2)]",
+    border: "border-emerald-500/50",
+    icon: Sparkles,
+    cardBg: "from-emerald-950/20 via-neutral-900/90 to-neutral-950/90",
+  },
+  5: {
+    label: "Level 5 • Core Member",
+    borderColor: "border-white/10 hover:border-white/30",
+    badgeBg: "bg-white/10 text-gray-200 border-white/20",
+    glow: "hover:shadow-[0_0_15px_rgba(255,255,255,0.08)]",
+    modalGlow: "shadow-[0_0_40px_rgba(255,255,255,0.1)]",
+    border: "border-white/20",
+    icon: User,
+    cardBg: "from-neutral-900/80 to-neutral-950/80",
+  },
+};
+
 export const TEAMS_LIST = [
   "Technical",
   "Research",

@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, GraduationCap, Network, ShieldCheck, Microscope } from 'lucide-react';
+import { Building2, GraduationCap, Network, Microscope } from 'lucide-react';
 
 export default function AffiliationsSection() {
   const partners = [
@@ -43,12 +42,12 @@ export default function AffiliationsSection() {
           const Icon = p.icon;
           return (
             <motion.div
-              key={idx}
+              key={p.name}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-4 rounded-xl bg-[var(--surface-card)] border border-[var(--border-accent)]/50 hover:border-[var(--accent-cyan)] transition-all flex flex-col items-center text-center group"
+              className="p-4 rounded-xl bg-[var(--surface-card)] border border-[var(--border-accent)]/50 hover:border-[var(--accent-cyan)] transition-[border-color,box-shadow] duration-200 flex flex-col items-center text-center group"
             >
               <div className={`w-10 h-10 rounded-xl bg-white/5 border border-white/10 ${p.color} flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform`}>
                 <Icon className="w-5 h-5" />

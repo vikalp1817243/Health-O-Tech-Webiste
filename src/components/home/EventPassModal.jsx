@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, CheckCircle2, Ticket, Calendar, MapPin, User, Mail, QrCode } from 'lucide-react';
+import { X, Sparkles, CheckCircle2, Ticket, User, Mail, QrCode } from 'lucide-react';
 
 export default function EventPassModal({ isOpen, onClose, defaultEventName = "MedTech Hackathon & Run Riot '27" }) {
   const [submitted, setSubmitted] = useState(false);
@@ -14,11 +14,14 @@ export default function EventPassModal({ isOpen, onClose, defaultEventName = "Me
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedName || !trimmedEmail) return;
     
     // Generate verified cyber ticket token
     const randomHex = Math.random().toString(16).substring(2, 8).toUpperCase();
     setTicketId(`HOT-2026-${randomHex}`);
+    setFormData((prev) => ({ ...prev, name: trimmedName, email: trimmedEmail }));
     setSubmitted(true);
   };
 
@@ -28,18 +31,17 @@ export default function EventPassModal({ isOpen, onClose, defaultEventName = "Me
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ duration: 0.3 }}
-          className="relative w-full max-w-lg rounded-3xl bg-[#0F0D24] border border-[var(--border-accent)] shadow-[0_0_50px_rgba(0,200,255,0.25)] overflow-hidden p-6 sm:p-8"
-        >
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.25 }}
+            className="relative w-full max-w-lg rounded-3xl bg-[#0F0D24] border border-[var(--border-accent)] shadow-[0_0_50px_rgba(0,200,255,0.25)] overflow-hidden p-6 sm:p-8"
+          >
           {/* Top Close Button */}
           <button
             type="button"
@@ -162,7 +164,9 @@ export default function EventPassModal({ isOpen, onClose, defaultEventName = "Me
                     <span className="font-orbitron font-black text-xs text-[var(--accent-cyan)] tracking-wider block">
                       HEALTH-O-TECH
                     </span>
-                    <span className="font-space text-[10px] text-neutral-400">VIT Bhopal University</span>
+                    <span className="font-space text-[10px] text-neutral-400">
+                      {defaultEventName} • VIT Bhopal
+                    </span>
                   </div>
                   <span className="font-mono text-xs text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30">
                     VERIFIED
@@ -207,6 +211,7 @@ export default function EventPassModal({ isOpen, onClose, defaultEventName = "Me
           )}
         </motion.div>
       </div>
-    </AnimatePresence>
-  );
+    )}
+  </AnimatePresence>
+);
 }

@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, Dna, Activity, Sparkles, Terminal } from 'lucide-react';
+import { ShieldCheck, Cpu, Dna, Activity, Sparkles } from 'lucide-react';
 
 export default function AboutSection() {
   const pillars = [
@@ -75,7 +74,7 @@ export default function AboutSection() {
             const Icon = pillar.icon;
             return (
               <motion.div
-                key={idx}
+                key={pillar.title}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}

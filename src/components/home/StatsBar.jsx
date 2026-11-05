@@ -1,10 +1,27 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Users, Calendar, Cpu, Award, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Users, Calendar, Cpu, Award } from 'lucide-react';
 
-function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borderGlow, delay = 0 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borderGlow, isInView }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -31,11 +48,7 @@ function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borde
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
+      variants={itemVariants}
       className={`relative group p-5 sm:p-6 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] backdrop-blur-xl ${borderGlow} hover:border-[var(--accent-cyan)] transition-[border-color,box-shadow] duration-200 flex flex-col items-center text-center`}
     >
       {/* Icon Chip */}
@@ -61,6 +74,8 @@ function CounterItem({ icon: Icon, target, suffix = '', label, colorClass, borde
 }
 
 export default function StatsBar() {
+  const [isInView, setIsInView] = useState(false);
+
   const stats = [
     {
       icon: Users,
@@ -98,11 +113,18 @@ export default function StatsBar() {
 
   return (
     <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 mb-16">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-        {stats.map((item, idx) => (
-          <CounterItem key={idx} delay={idx * 0.12} {...item} />
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        onViewportEnter={() => setIsInView(true)}
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
+      >
+        {stats.map((item) => (
+          <CounterItem key={item.label} isInView={isInView} {...item} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

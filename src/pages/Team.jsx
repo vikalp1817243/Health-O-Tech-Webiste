@@ -175,6 +175,7 @@ export default function TeamPage() {
       {/* Detail Popup Modal (Triggered when clicking any box/name) */}
       {selectedMember && (
         <MemberModal
+          key={selectedMember.id}
           member={selectedMember}
           onClose={() => setSelectedMember(null)}
         />

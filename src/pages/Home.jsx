@@ -1,8 +1,8 @@
-import React from 'react';
 import HeroSection from '../components/home/HeroSection';
 import BioTelemetryBar from '../components/home/BioTelemetryBar';
 import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
+import AffiliationsSection from '../components/home/AffiliationsSection';
 import DomainsSection from '../components/home/DomainsSection';
 import ProjectsSection from '../components/home/ProjectsSection';
 import EventsSection from '../components/home/EventsSection';
@@ -24,6 +24,9 @@ function HomePage() {
 
       {/* 4. About Section with Official Banner & 3 Pillars */}
       <AboutSection />
+
+      {/* 4.5 Academic & Institutional Affiliations */}
+      <AffiliationsSection />
 
       {/* 5. Core Domains & Verticals */}
       <DomainsSection />

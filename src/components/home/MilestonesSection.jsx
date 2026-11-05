@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Award, FileText, Users, Lightbulb, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Trophy, Award, FileText, Lightbulb, CheckCircle2 } from 'lucide-react';
 
 export default function MilestonesSection() {
   const milestones = [
