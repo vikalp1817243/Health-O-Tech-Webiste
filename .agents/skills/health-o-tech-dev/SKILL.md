@@ -18,7 +18,7 @@ This skill provides architecture guidelines, styling conventions, and animation 
 - **Styling**: Tailwind CSS v4 (`@tailwindcss/vite`) with custom biopunk theme CSS variables in `src/index.css`
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Backend / Database**: Supabase JS Client (`@supabase/supabase-js`)
+- **Backend / Data Layer**: Google Drive & Sheets Live Sync API (Google Apps Script Web App)
 - **Routing**: React Router DOM (`/` for Home, `/team` for Team Hierarchy)
 
 ---

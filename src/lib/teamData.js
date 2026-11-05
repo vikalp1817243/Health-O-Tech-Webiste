@@ -1,4 +1,3 @@
-import { supabase, isSupabaseConfigured } from './supabaseClient';
 
 export const TEAMS_LIST = [
   "Technical",
@@ -557,32 +556,12 @@ export function convertGoogleDriveUrl(url) {
 }
 
 export async function fetchTeamMembers() {
-  if (isSupabaseConfigured && supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('team_members')
-        .select('*')
-        .order('level', { ascending: true })
-        .order('order_index', { ascending: true });
-
-      if (error) {
-        console.warn('Supabase query error, falling back to local data:', error.message);
-        return INITIAL_TEAM_MEMBERS;
-      }
-
-      if (data && data.length > 0) {
-        return data;
-      }
-    } catch (err) {
-      console.warn('Failed to query Supabase, using local data:', err);
-    }
-  }
   return INITIAL_TEAM_MEMBERS;
 }
 
 /**
  * Fetches team members for a given tenure or the latest batch.
- * Priority: Google Sheets (Drive Folder API) -> Supabase -> Local Static Data
+ * Priority: Google Sheets (Drive Folder API) -> Local Fallback Data
  */
 export async function fetchTeamData(tenure = '') {
   const apiUrl = import.meta.env.VITE_GOOGLE_SHEETS_API_URL;

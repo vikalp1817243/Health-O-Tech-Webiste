@@ -60,7 +60,7 @@ From edge-AI diagnostic models to sub-$50 myoelectric prosthetic arms and secure
 - **🗂️ Interactive Innovation Showcase**: Categorized flagship projects with smooth spring re-layout animations powered by Framer Motion.
 - **👥 Eraser-Style Org Hierarchy Chart (`/team`)**: Interactive tree view displaying the club executive directorate, department leads, and coordinators with filterable tabs and member bios.
 - **🎟️ Digital Event Pass Generator**: Generates customized cyber event passes with dynamic QR codes for club hackathons and workshops.
-- **☁️ Supabase Cloud Integration**: Live student registration and membership intake synchronized with real-time PostgreSQL database triggers.
+- **📊 Google Drive Folder Live Sync**: Multi-tenure team rosters and leadership architectures synced dynamically via Google Apps Script Web App.
 
 ---
 
@@ -71,7 +71,7 @@ From edge-AI diagnostic models to sub-$50 myoelectric prosthetic arms and secure
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`) + Custom CSS design tokens
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Iconography**: [Lucide React](https://lucide.dev/)
-- **Database & Auth**: [Supabase](https://supabase.com/) (`@supabase/supabase-js`)
+- **Data Layer**: Google Drive & Sheets Live Sync API
 - **Typography**: [Orbitron](https://fonts.google.com/specimen/Orbitron) & [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)
 
 ---
@@ -106,14 +106,13 @@ Create a `.env` file in the root directory by copying the sample configuration:
 cp .env.example .env
 ```
 
-Open `.env` and fill in your Supabase project credentials (optional for local UI preview):
+Open `.env` and fill in your Google Sheets Apps Script API URL:
 
 ```env
-VITE_SUPABASE_URL=https://your-project-ref.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+VITE_GOOGLE_SHEETS_API_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
 ```
 
-> **Note**: The application includes graceful fallback data if Supabase credentials are not provided, allowing all UI flows and components to be tested locally.
+> **Note**: The application includes graceful fallback data if the API URL is not provided, allowing all UI flows and components to be tested locally.
 
 ### 4. Run Development Server
 
@@ -156,16 +155,16 @@ Health-O-Tech-Webiste/
 │   │   ├── Navbar.jsx          # Top navigation with status badge
 │   │   └── ScrollToTop.jsx     # Route transition scroll handler
 │   ├── context/                # React context providers (Theme, etc.)
-│   ├── lib/                    # Supabase client & team members dataset
+│   ├── lib/                    # Team data loader & Google Sheets API sync
 │   ├── pages/                  # Page routes (Home.jsx, Team.jsx)
 │   ├── App.jsx                 # Route definitions & layout wrappers
 │   ├── index.css               # Design tokens, fonts, and Tailwind styles
 │   └── main.jsx                # Application root entry point
 ├── .env.example                # Sample environment configuration
+├── gas/                        # Google Apps Script API templates
 ├── index.html                  # HTML entry point with biopunk typography
 ├── LICENSE                     # MIT License
 ├── package.json                # Project dependencies and build scripts
-├── supabase_schema.sql         # SQL migration schema for membership tables
 └── vite.config.js              # Vite configuration with Tailwind CSS v4
 ```
 

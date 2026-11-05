@@ -20,7 +20,7 @@
 
 // REPLACE THIS WITH YOUR GOOGLE DRIVE FOLDER ID:
 // (The string after /folders/ in your Google Drive folder URL)
-const TEAM_FOLDER_ID = "YOUR_GOOGLE_DRIVE_FOLDER_ID_HERE";
+const TEAM_FOLDER_ID = "1CKEDTeh4lYniJfpgYObcmt98Itd52L46";
 
 /**
  * Handle incoming GET requests from the website.
