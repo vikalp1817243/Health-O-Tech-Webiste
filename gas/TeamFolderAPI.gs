@@ -112,31 +112,54 @@ function getTeamData(requestedTenure) {
   const headerMap = mapHeaders(rawHeaders);
 
   const members = [];
+  const coreMemberCountByTeam = {};
+
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
-    const name = getCell(row, headerMap.name);
-    if (!name) continue; // Skip blank rows
-
+    const rawName = getCell(row, headerMap.name);
     const role = getCell(row, headerMap.role) || "Core Member";
     const rawTeam = getCell(row, headerMap.team) || "General";
     const team_name = normalizeTeamName(rawTeam, role);
-    const rawPhoto = getCell(row, headerMap.photo);
-    const photo_url = convertDriveUrl(rawPhoto);
     const level = inferHierarchyLevel(role, team_name);
+
+    const isVacant = isVacantIndicator(rawName);
+
+    // Core members: do NOT show vacant posts, skip row
+    if (level === 5 && isVacant) {
+      continue;
+    }
+
+    // Completely empty row
+    if (isVacant && !role && !rawTeam) {
+      continue;
+    }
+
+    // Cap core members at max 15 per team
+    if (level === 5) {
+      const currentCount = coreMemberCountByTeam[team_name] || 0;
+      if (currentCount >= 15) {
+        continue;
+      }
+      coreMemberCountByTeam[team_name] = currentCount + 1;
+    }
+
+    const rawPhoto = getCell(row, headerMap.photo);
+    const photo_url = isVacant ? "" : convertDriveUrl(rawPhoto);
 
     members.push({
       id: "mem-" + targetFile.id.slice(0, 5) + "-" + i,
-      name: name,
+      name: isVacant ? (level === 0 || level === 4 ? "Position Vacant" : "Not Assigned") : rawName,
+      is_vacant: isVacant,
       role: role,
       level: level,
       team_name: team_name,
-      email: getCell(row, headerMap.email),
-      registration_number: getCell(row, headerMap.registration_number),
-      batch: getCell(row, headerMap.batch),
-      branch: getCell(row, headerMap.branch),
-      tagline: getCell(row, headerMap.tagline),
-      linkedin_url: getCell(row, headerMap.linkedin),
-      github_url: getCell(row, headerMap.github),
+      email: isVacant ? "" : getCell(row, headerMap.email),
+      registration_number: isVacant ? "" : getCell(row, headerMap.registration_number),
+      batch: isVacant ? "" : getCell(row, headerMap.batch),
+      branch: isVacant ? "" : getCell(row, headerMap.branch),
+      tagline: isVacant ? "" : getCell(row, headerMap.tagline),
+      linkedin_url: isVacant ? "" : getCell(row, headerMap.linkedin),
+      github_url: isVacant ? "" : getCell(row, headerMap.github),
       photo_url: photo_url
     });
   }
@@ -147,6 +170,26 @@ function getTeamData(requestedTenure) {
     tenures: tenureNames,
     members: members
   };
+}
+
+/**
+ * Checks whether a name or cell value indicates a vacant position.
+ */
+function isVacantIndicator(text) {
+  if (!text) return true;
+  const s = String(text).trim().toLowerCase();
+  return (
+    s === "" ||
+    s === "vacant" ||
+    s === "position vacant" ||
+    s === "not assigned" ||
+    s === "tbd" ||
+    s === "n/a" ||
+    s === "na" ||
+    s === "none" ||
+    s === "unassigned" ||
+    s === "details not available"
+  );
 }
 
 /**
@@ -215,7 +258,14 @@ function convertDriveUrl(url) {
 }
 
 /**
- * Normalizes team names to match the 7 standard core departments or Executive Directorate.
+ * Normalizes team names to match the 7 confirmed core departments or Executive Directorate.
+ * 1. Technical Team
+ * 2. Anchoring Team
+ * 3. Social Media Team
+ * 4. Event Management Team
+ * 5. Content Team
+ * 6. Design Team
+ * 7. PR and Outreach Team
  */
 function normalizeTeamName(rawTeam, role) {
   const roleLower = (role || "").toLowerCase();
@@ -224,15 +274,15 @@ function normalizeTeamName(rawTeam, role) {
   }
 
   const t = (rawTeam || "").toLowerCase();
-  if (t.includes("tech")) return "Technical";
-  if (t.includes("research")) return "Research";
-  if (t.includes("event")) return "Events";
-  if (t.includes("design")) return "Design";
-  if (t.includes("pr") || t.includes("outreach")) return "PR & Outreach";
-  if (t.includes("spons")) return "Sponsorship";
-  if (t.includes("content")) return "Content";
+  if (t.includes("tech")) return "Technical Team";
+  if (t.includes("anchor")) return "Anchoring Team";
+  if (t.includes("social") || t.includes("media")) return "Social Media Team";
+  if (t.includes("event") || t.includes("management")) return "Event Management Team";
+  if (t.includes("content")) return "Content Team";
+  if (t.includes("design")) return "Design Team";
+  if (t.includes("pr") || t.includes("outreach")) return "PR and Outreach Team";
   if (t.includes("exec")) return "Executive Directorate";
-  return rawTeam || "Technical";
+  return rawTeam || "Technical Team";
 }
 
 /**

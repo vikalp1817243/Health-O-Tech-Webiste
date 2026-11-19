@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import EraserHierarchyChart from '../components/team/EraserHierarchyChart';
 import MemberCard from '../components/team/MemberCard';
 import MemberModal from '../components/team/MemberModal';
 import { fetchTeamData } from '../lib/teamData';
-import { Search, Users, Calendar, ChevronDown } from 'lucide-react';
+import { Search, Calendar, ChevronDown } from 'lucide-react';
 
 export default function TeamPage() {
   const [members, setMembers] = useState([]);
@@ -12,6 +12,7 @@ export default function TeamPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMember, setSelectedMember] = useState(null);
+  const [mobileDeptFilter, setMobileDeptFilter] = useState('ALL');
 
   useEffect(() => {
     let isMounted = true;
@@ -35,8 +36,17 @@ export default function TeamPage() {
     };
   }, [selectedTenure]);
 
-  // Filter members for live search mode
-  const filteredMembers = members.filter((m) => {
+  // Filter members for live search mode (exclude vacant placeholder entries)
+  const activeMembers = members.filter(
+    (m) =>
+      !m.is_vacant &&
+      m.name &&
+      !['vacant', 'position vacant', 'not assigned', 'tbd', 'n/a', 'none', 'unassigned'].includes(
+        m.name.trim().toLowerCase()
+      )
+  );
+
+  const filteredMembers = activeMembers.filter((m) => {
     const query = searchQuery.toLowerCase().trim();
     if (!query) return false;
     return (
@@ -48,21 +58,59 @@ export default function TeamPage() {
     );
   });
 
+  const departmentsCount = new Set(
+    activeMembers
+      .filter((m) => m.level > 2 && m.team_name && !m.team_name.toLowerCase().includes('executive'))
+      .map((m) => m.team_name)
+  ).size || 7;
+
+  // Group active members by department for mobile cards view
+  const mobileDepartments = useMemo(() => {
+    const depts = [];
+
+    // 1. Executive Directorate first
+    const execMembers = activeMembers
+      .filter((m) => m.level <= 2 || m.team_name?.toLowerCase().includes('executive'))
+      .sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+
+    if (execMembers.length > 0) {
+      depts.push({
+        name: 'Executive Directorate',
+        members: execMembers,
+      });
+    }
+
+    // 2. Discover other unique departments in order of appearance
+    const otherDepts = Array.from(
+      new Set(
+        activeMembers
+          .filter((m) => m.level > 2 && m.team_name && !m.team_name.toLowerCase().includes('executive'))
+          .map((m) => m.team_name)
+      )
+    );
+
+    otherDepts.forEach((deptName) => {
+      const deptMembers = activeMembers
+        .filter((m) => m.team_name === deptName && m.level > 2)
+        .sort((a, b) => (a.level ?? 5) - (b.level ?? 5));
+      if (deptMembers.length > 0) {
+        depts.push({
+          name: deptName,
+          members: deptMembers,
+        });
+      }
+    });
+
+    return depts;
+  }, [activeMembers]);
+
   return (
     <div className="min-h-screen bg-[var(--bg)] text-white pt-8 pb-20 px-3 sm:px-6 selection:bg-[var(--accent-cyan)] selection:text-black circuit-bg">
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Header Section with Inspiring Text */}
         <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] backdrop-blur-md mb-4 font-space shadow-[0_0_15px_rgba(0,200,255,0.15)]">
-            <Users className="w-3.5 h-3.5 text-[var(--accent-green)]" />
-            <span className="font-semibold tracking-wider uppercase text-[11px]">
-              Executive Directorate & Specialized Divisions
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" />
-          </div>
-
-          <h1 className="font-orbitron text-3xl sm:text-5xl font-black tracking-tight text-white mb-3">
+          <h1 className="font-orbitron text-xl min-[400px]:text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-3 whitespace-nowrap">
             LEADERSHIP <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)]">ARCHITECTURE</span>
           </h1>
 
@@ -78,10 +126,10 @@ export default function TeamPage() {
           <div className="flex items-center gap-3 text-xs font-space text-[var(--text-muted)] self-start md:self-center">
             <span className="flex items-center gap-1.5 text-white font-medium">
               <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] shadow-[0_0_8px_rgba(0,230,118,0.8)]" />
-              7 Core Departments
+              {departmentsCount} Core Departments
             </span>
             <span className="text-neutral-600">•</span>
-            <span>{members.length > 0 ? `${members.length} Innovators` : '40+ Innovators'}</span>
+            <span>{activeMembers.length > 0 ? `${activeMembers.length} Innovators` : '40+ Innovators'}</span>
           </div>
 
           {/* Right Controls: Batch Selector + Quick Search */}
@@ -162,13 +210,85 @@ export default function TeamPage() {
             )}
           </div>
         ) : (
-          /* ========================================================== */
-          /* THE EXACT ERASER FLOWCHART DIAGRAM                        */
-          /* ========================================================== */
-          <EraserHierarchyChart
-            members={members}
-            onSelectMember={setSelectedMember}
-          />
+          <>
+            {/* ========================================================== */}
+            {/* DESKTOP VIEW: FLOWCHART HIERARCHY DIAGRAM (hidden on mobile)*/}
+            {/* ========================================================== */}
+            <div className="hidden md:block w-full">
+              <EraserHierarchyChart
+                members={members}
+                onSelectMember={setSelectedMember}
+              />
+            </div>
+
+            {/* ========================================================== */}
+            {/* MOBILE VIEW: DEPARTMENT CARDS (shown on mobile, < md)      */}
+            {/* ========================================================== */}
+            <div className="block md:hidden w-full max-w-2xl px-1 pt-2 pb-6">
+              {/* Quick Department Filter Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent select-none">
+                <button
+                  type="button"
+                  onClick={() => setMobileDeptFilter('ALL')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-space font-medium whitespace-nowrap transition-all cursor-pointer ${
+                    mobileDeptFilter === 'ALL'
+                      ? 'bg-[var(--accent-cyan)] text-black font-semibold shadow-[0_0_12px_rgba(0,200,255,0.4)]'
+                      : 'bg-white/5 border border-white/10 text-neutral-300 hover:bg-white/10'
+                  }`}
+                >
+                  All ({activeMembers.length})
+                </button>
+                {mobileDepartments.map((dept) => (
+                  <button
+                    key={dept.name}
+                    type="button"
+                    onClick={() => setMobileDeptFilter(dept.name)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-space font-medium whitespace-nowrap transition-all cursor-pointer ${
+                      mobileDeptFilter === dept.name
+                        ? 'bg-[var(--accent-cyan)] text-black font-semibold shadow-[0_0_12px_rgba(0,200,255,0.4)]'
+                        : 'bg-white/5 border border-white/10 text-neutral-300 hover:bg-white/10'
+                    }`}
+                  >
+                    {dept.name} ({dept.members.length})
+                  </button>
+                ))}
+              </div>
+
+              {/* Render Filtered Department Card Groups */}
+              <div className="space-y-6">
+                {mobileDepartments
+                  .filter(
+                    (dept) =>
+                      mobileDeptFilter === 'ALL' || mobileDeptFilter === dept.name
+                  )
+                  .map((dept) => (
+                    <div key={dept.name} className="flex flex-col">
+                      {/* Department Heading */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-1.5 h-4 rounded-full bg-gradient-to-b from-[var(--accent-cyan)] to-[var(--accent-green)]" />
+                        <h2 className="font-orbitron font-bold text-xs tracking-wider text-white uppercase">
+                          {dept.name}
+                        </h2>
+                        <span className="text-[11px] font-space text-[var(--text-muted)]">
+                          • {dept.members.length} {dept.members.length === 1 ? 'member' : 'members'}
+                        </span>
+                      </div>
+
+                      {/* Member Cards Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {dept.members.map((member) => (
+                          <MemberCard
+                            key={member.id}
+                            member={member}
+                            onClick={setSelectedMember}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </>
         )}
       </div>
 

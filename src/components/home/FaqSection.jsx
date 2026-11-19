@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { HelpCircle, Compass, UserCheck, Cpu, Calendar, Award } from 'lucide-react';
+import { Compass, UserCheck, Cpu, Calendar, Award } from 'lucide-react';
 
 export default function FaqSection() {
   const faqs = [
@@ -61,20 +61,9 @@ export default function FaqSection() {
   ];
 
   return (
-    <section id="faq" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <section id="faq" className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
-        >
-          <HelpCircle className="w-3.5 h-3.5 text-[var(--accent-green)]" />
-          <span>KNOWLEDGE ARCHIVE // FAQ</span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,17 +86,22 @@ export default function FaqSection() {
       </div>
 
       {/* Sticky Stacking Cards Container */}
-      <div className="relative flex flex-col pb-20">
+      <div className="relative flex flex-col pb-4">
         {faqs.map((faq, idx) => {
           const IconComponent = faq.icon;
+          const isLast = idx === faqs.length - 1;
           return (
-            <div
+            <motion.div
               key={faq.q}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
               className="sticky w-full"
               style={{
-                top: `${96 + idx * 26}px`,
+                top: `${96 + idx * 24}px`,
                 zIndex: 10 + idx,
-                marginBottom: idx === faqs.length - 1 ? '40px' : '38vh',
+                marginBottom: isLast ? '24px' : '26vh',
               }}
             >
               <div
@@ -154,7 +148,7 @@ export default function FaqSection() {
                   <span className="font-mono text-white/30">HOT_ARCHIVE // VERIFIED</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

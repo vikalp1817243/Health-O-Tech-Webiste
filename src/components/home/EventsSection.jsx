@@ -4,7 +4,6 @@ import {
   Calendar, 
   MapPin, 
   Sparkles, 
-  Flame, 
   ExternalLink,
   X
 } from 'lucide-react';
@@ -51,17 +50,6 @@ export default function EventsSection() {
     <section id="events" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-green)] mb-4 font-space"
-        >
-          <Flame className="w-3.5 h-3.5 text-amber-400" />
-          <span>EVENTS & WORKSHOPS</span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,14 +91,14 @@ export default function EventsSection() {
             <div>
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="font-orbitron text-[10px] tracking-wider px-3 py-1 rounded-full bg-emerald-500/20 text-[var(--accent-green)] border border-emerald-500/40 font-bold uppercase">
+                <span className="font-orbitron text-[10px] tracking-wider px-3 py-1 rounded-full bg-emerald-500/15 text-[var(--accent-green)] font-bold uppercase">
                   Flagship Event
                 </span>
-                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white flex items-center gap-1.5">
+                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/[0.04] text-white flex items-center gap-1.5">
                   <Calendar className="w-3 h-3 text-[var(--accent-cyan)]" />
                   April 2026
                 </span>
-                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white flex items-center gap-1.5">
+                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/[0.04] text-white flex items-center gap-1.5">
                   <MapPin className="w-3 h-3 text-rose-400" />
                   VIT Bhopal Campus
                 </span>
@@ -132,11 +120,11 @@ export default function EventsSection() {
 
               {/* Highlights List */}
               <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-3 rounded-xl bg-white/[0.04]">
                   <div className="font-orbitron font-bold text-lg text-white">500+</div>
                   <div className="font-space text-[11px] text-[var(--text-muted)]">Runners & Sprinters</div>
                 </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-3 rounded-xl bg-white/[0.04]">
                   <div className="font-orbitron font-bold text-lg text-[var(--accent-green)]">5K & 10K</div>
                   <div className="font-space text-[11px] text-[var(--text-muted)]">Certified Tracks</div>
                 </div>

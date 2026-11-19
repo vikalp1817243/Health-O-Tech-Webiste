@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, Dna, Activity, Sparkles } from 'lucide-react';
+import { ShieldCheck, Cpu, Dna, Activity } from 'lucide-react';
 
 export default function AboutSection() {
   const pillars = [
@@ -33,17 +33,6 @@ export default function AboutSection() {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-[var(--accent-green)]" />
-          <span>ABOUT THE CLUB</span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -6,8 +6,7 @@ import {
   BrainCircuit, 
   Bot, 
   Dna, 
-  Terminal, 
-  Code 
+  Terminal 
 } from 'lucide-react';
 import { GitHubIcon } from '../ui/Icons';
 
@@ -27,7 +26,7 @@ export default function ProjectsSection() {
       category: 'iot',
       title: 'PulseGuard IoT Telemetry Node',
       status: 'Live Prototype',
-      statusColor: 'text-[var(--accent-green)] border-emerald-500/40 bg-emerald-500/10',
+      statusColor: 'text-[var(--accent-green)] bg-emerald-500/15',
       icon: Activity,
       desc: 'Wearable chest-patch biosensor streaming real-time single-lead ECG and photoplethysmogram waveforms over MQTT to an alert dashboard.',
       tech: ['ESP32-S3', 'AD8232 ECG', 'MQTT', 'FreeRTOS', 'React'],
@@ -40,7 +39,7 @@ export default function ProjectsSection() {
       category: 'ai',
       title: 'NeuroScan Glioma Segmenter',
       status: 'Research Model',
-      statusColor: 'text-[var(--accent-cyan)] border-cyan-500/40 bg-cyan-500/10',
+      statusColor: 'text-[var(--accent-cyan)] bg-cyan-500/15',
       icon: BrainCircuit,
       desc: 'Hybrid Vision Transformer and 3D U-Net pipeline trained on BraTS MRI datasets for accurate sub-millimeter brain lesion contouring.',
       tech: ['PyTorch', 'MONAI', 'CUDA', 'FastAPI', 'Docker'],
@@ -53,7 +52,7 @@ export default function ProjectsSection() {
       category: 'genomics',
       title: 'ProsthetiX Myoelectric Hand',
       status: 'Patent Pending',
-      statusColor: 'text-amber-400 border-amber-500/40 bg-amber-500/10',
+      statusColor: 'text-amber-400 bg-amber-500/15',
       icon: Bot,
       desc: 'Sub-$50 3D-printed prosthetic forearm powered by surface EMG muscle signal classification, allowing adaptive grip poses for amputees.',
       tech: ['Arduino Nano', 'EMG Sensor', 'Servo Motors', 'SolidWorks CAD'],
@@ -66,7 +65,7 @@ export default function ProjectsSection() {
       category: 'genomics',
       title: 'GenoAlign DNA Pipeline',
       status: 'Open Source',
-      statusColor: 'text-[var(--accent-purple)] border-purple-500/40 bg-purple-500/10',
+      statusColor: 'text-[var(--accent-purple)] bg-purple-500/15',
       icon: Dna,
       desc: 'GPU-accelerated biological sequence aligner implementing vectorized Smith-Waterman and Needleman-Wunsch algorithms for genomic variant calling.',
       tech: ['Rust', 'Biopython', 'OpenCL', 'CLI'],
@@ -87,17 +86,6 @@ export default function ProjectsSection() {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
-        >
-          <Code className="w-3.5 h-3.5 text-[var(--accent-green)]" />
-          <span>STUDENT INNOVATIONS & R&D</span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -158,10 +146,10 @@ export default function ProjectsSection() {
                 <div>
                   {/* Top Header */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 ${proj.accentColor} group-hover:scale-110 transition-transform`}>
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 ${proj.accentColor} group-hover:scale-110 transition-transform`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className={`font-space text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border ${proj.statusColor}`}>
+                    <span className={`font-space text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${proj.statusColor}`}>
                       {proj.status}
                     </span>
                   </div>
@@ -181,7 +169,7 @@ export default function ProjectsSection() {
                     {proj.tech.map((t, tIdx) => (
                       <span
                         key={tIdx}
-                        className="font-space text-[10px] px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-neutral-300"
+                        className="font-space text-[10px] px-2.5 py-1 rounded-lg bg-white/[0.04] text-[var(--text-muted)] group-hover:text-neutral-300 transition-colors"
                       >
                         {t}
                       </span>

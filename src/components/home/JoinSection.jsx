@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { 
   Users, 
   Send, 
-  Sparkles, 
   CheckCircle2, 
-  Terminal,
+  HeartPulse,
   Check,
   ChevronDown
 } from 'lucide-react';
@@ -16,7 +15,7 @@ export default function JoinSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    vertical: 'ai',
+    vertical: 'wellness',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -60,11 +59,6 @@ export default function JoinSection() {
           
           {/* Header */}
           <div className="text-center flex flex-col items-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-[var(--accent-green)] mb-6 font-space">
-              <Sparkles className="w-4 h-4 text-[var(--accent-green)] animate-pulse" />
-              <span className="font-semibold uppercase tracking-wider">Join The Health Informatics Movement</span>
-            </div>
-
             <h2 className="font-orbitron font-black text-2xl sm:text-4xl md:text-5xl text-white tracking-tight mb-6 leading-tight">
               READY TO REVOLUTIONIZE <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] via-emerald-300 to-[var(--accent-green)]">
@@ -117,14 +111,13 @@ export default function JoinSection() {
               ))}
             </div>
 
-            {/* Right: Interactive Cyber Inquiry Form */}
+            {/* Right: Health Inquiry Form */}
             <div className="lg:col-span-7 p-6 sm:p-7 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] backdrop-blur-xl shadow-xl">
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
                 <div className="flex items-center gap-2 font-space text-xs text-[var(--accent-cyan)]">
-                  <Terminal className="w-4 h-4 text-[var(--accent-green)]" />
-                  <span className="font-mono uppercase tracking-wider font-semibold">Direct Inquiry Terminal</span>
+                  <HeartPulse className="w-4 h-4 text-[var(--accent-green)] animate-pulse" />
+                  <span className="font-mono uppercase tracking-wider font-semibold">Health & Wellness Inquiry Desk</span>
                 </div>
-                <span className="w-2 h-2 rounded-full bg-[var(--accent-green)]" />
               </div>
 
               {submitted ? (
@@ -137,16 +130,16 @@ export default function JoinSection() {
                     <Check className="w-7 h-7" />
                   </div>
                   <h4 className="font-orbitron font-bold text-lg text-white mb-2">
-                    Transmission Received!
+                    Inquiry Received!
                   </h4>
                   <p className="font-space text-xs sm:text-sm text-[var(--text-muted)] max-w-sm mb-6 leading-relaxed">
-                    Thank you, {formData.name}. Our student board coordinators will review your submission and contact you via email.
+                    Thank you, {formData.name}. Our health coordinators will review your inquiry and get in touch with you shortly.
                   </p>
                   <button
                     type="button"
                     onClick={() => {
                       setSubmitted(false);
-                      setFormData({ name: '', email: '', vertical: 'ai', message: '' });
+                      setFormData({ name: '', email: '', vertical: 'wellness', message: '' });
                     }}
                     className="font-space text-xs text-[var(--accent-cyan)] underline hover:text-white transition-colors cursor-pointer"
                   >
@@ -188,7 +181,7 @@ export default function JoinSection() {
 
                   <div>
                     <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 block">
-                      Vertical / Area of Interest
+                      Health Domain / Area of Interest
                     </label>
                     <div className="relative">
                       <select
@@ -196,11 +189,11 @@ export default function JoinSection() {
                         onChange={(e) => setFormData({ ...formData, vertical: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-[#0d0922] border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all appearance-none cursor-pointer pr-10 shadow-inner"
                       >
-                        <option value="ai" className="bg-[#0e0a24] text-white py-2">AI Diagnostics & Pathology</option>
-                        <option value="iot" className="bg-[#0e0a24] text-white py-2">IoT Bio-Sensors & Telemetry</option>
-                        <option value="genomics" className="bg-[#0e0a24] text-white py-2">Computational Genomics & Bionics</option>
-                        <option value="events" className="bg-[#0e0a24] text-white py-2">Run Riot & Campus Events Organizing</option>
-                        <option value="research" className="bg-[#0e0a24] text-white py-2">Academic Research & IEEE Papers</option>
+                        <option value="wellness" className="bg-[#0e0a24] text-white py-2">Preventive Health & Student Wellness</option>
+                        <option value="marathon" className="bg-[#0e0a24] text-white py-2">Run Riot & Campus Fitness Marathons</option>
+                        <option value="clinical" className="bg-[#0e0a24] text-white py-2">Clinical Diagnostics & Patient Care</option>
+                        <option value="biomedical" className="bg-[#0e0a24] text-white py-2">Biomedical & Health Studies</option>
+                        <option value="general" className="bg-[#0e0a24] text-white py-2">General Health Inquiry</option>
                       </select>
                       <ChevronDown className="w-4 h-4 text-[var(--accent-cyan)] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     </div>
@@ -208,11 +201,11 @@ export default function JoinSection() {
 
                   <div>
                     <label className="font-space text-xs font-medium text-neutral-300 mb-1.5 block">
-                      Message / Questions
+                      Health Inquiry / Message
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Tell us about your interests, branch, or inquiry..."
+                      placeholder="Ask a question about our health initiatives, campus fitness events, or wellness programs..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-[#0d0922]/90 border border-[var(--border)] text-white text-sm focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-2 focus:ring-[var(--accent-cyan)]/25 transition-all placeholder:text-neutral-500 resize-none shadow-inner"
@@ -227,12 +220,12 @@ export default function JoinSection() {
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                        <span>Encrypting Transmission...</span>
+                        <span>Submitting Inquiry...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
-                        <span>Transmit Inquiry to HOT Board</span>
+                        <HeartPulse className="w-4 h-4" />
+                        <span>Submit Health Inquiry</span>
                       </>
                     )}
                   </button>

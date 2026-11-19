@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Dna, Activity, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, Users, Activity, ChevronDown, Sparkles } from 'lucide-react';
 import { smoothScrollTo } from '../../lib/utils';
 
 export default function HeroSection() {
@@ -128,21 +128,6 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-20 max-w-5xl mx-auto text-center flex flex-col items-center">
-        
-        {/* Top Floating Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[var(--surface-card)] border border-[var(--border-accent)] text-xs font-space text-[var(--accent-cyan)] shadow-[0_0_20px_rgba(0,200,255,0.2)] backdrop-blur-md mb-6"
-        >
-          <Dna className="w-4 h-4 text-[var(--accent-green)] animate-pulse" />
-          <span className="font-semibold tracking-wider uppercase text-[11px] sm:text-xs text-[var(--text)]">
-            Health Informatics & Bio-Tech Innovations
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" />
-        </motion.div>
-
         {/* Central Logo Emblem with Cyber Holographic Frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

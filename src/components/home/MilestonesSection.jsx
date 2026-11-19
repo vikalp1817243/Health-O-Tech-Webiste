@@ -68,17 +68,6 @@ export default function MilestonesSection() {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-[var(--border-accent)] text-xs text-[var(--accent-cyan)] mb-4 font-space"
-        >
-          <Trophy className="w-3.5 h-3.5 text-amber-400" />
-          <span>PROVEN IMPACT & ACHIEVEMENTS</span>
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +107,7 @@ export default function MilestonesSection() {
             >
               {/* Corner Year Stamp */}
               <div className="flex items-center justify-between mb-5">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 ${item.accentColor} group-hover:scale-110 transition-transform shadow-md`}>
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center bg-white/5 ${item.accentColor} group-hover:scale-110 transition-transform`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col items-end">

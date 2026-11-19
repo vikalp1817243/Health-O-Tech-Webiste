@@ -55,13 +55,13 @@ export const LEVEL_CONFIG = {
 };
 
 export const TEAMS_LIST = [
-  "Technical",
-  "Research",
-  "Events",
-  "Design",
-  "PR & Outreach",
-  "Sponsorship",
-  "Content",
+  "Technical Team",
+  "Anchoring Team",
+  "Social Media Team",
+  "Event Management Team",
+  "Content Team",
+  "Design Team",
+  "PR and Outreach Team",
 ];
 
 export const INITIAL_TEAM_MEMBERS = [
@@ -121,7 +121,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Kabir Mehta",
     role: "Team Lead",
     level: 4,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
     tagline: "Full-stack web & IoT healthcare monitoring systems",
     email: "kabir@healthotech.org",
@@ -131,7 +131,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Ananya Iyer",
     role: "Vice Lead",
     level: 4,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
     tagline: "Embedded microcontrollers & sensor integrations",
     email: "ananya@healthotech.org",
@@ -141,7 +141,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Devansh Patel",
     role: "Mem 01",
     level: 5,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
     tagline: "Frontend developer & React engineer",
   },
@@ -150,7 +150,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Sanya Gupta",
     role: "Mem 02",
     level: 5,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
     tagline: "Backend developer & database architect",
   },
@@ -159,7 +159,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Nikhil Joshi",
     role: "Mem 03",
     level: 5,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400",
     tagline: "Mobile app developer (Flutter / React Native)",
   },
@@ -168,7 +168,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Rhea Deshmukh",
     role: "Mem 04",
     level: 5,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
     tagline: "Cloud infrastructure & CI/CD pipeline manager",
   },
@@ -177,7 +177,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Arman Sheikh",
     role: "Mem 05",
     level: 5,
-    team_name: "Technical",
+    team_name: "Technical Team",
     photo_url: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400",
     tagline: "Firmware developer & hardware tester",
   },
@@ -190,7 +190,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Dr. Vikram Joshi",
     role: "Team Lead",
     level: 4,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400",
     tagline: "Biomedical signals & clinical algorithm design",
     email: "vikram@healthotech.org",
@@ -200,7 +200,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Meera Kulkarni",
     role: "Vice Lead",
     level: 4,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
     tagline: "Computational genomics & medical dataset curation",
     email: "meera@healthotech.org",
@@ -210,7 +210,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Aditya Rao",
     role: "Mem 01",
     level: 5,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
     tagline: "Bio-signal preprocessing & ECG anomaly detection",
   },
@@ -219,7 +219,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Tara Sen",
     role: "Mem 02",
     level: 5,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
     tagline: "Literature review & peer-reviewed paper writer",
   },
@@ -228,7 +228,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Varun Nair",
     role: "Mem 03",
     level: 5,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
     tagline: "Statistical analysis & data modeling",
   },
@@ -237,7 +237,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Ishita Roy",
     role: "Mem 04",
     level: 5,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
     tagline: "Computer vision for medical radiography",
   },
@@ -246,7 +246,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Chirag Bhatt",
     role: "Mem 05",
     level: 5,
-    team_name: "Research",
+    team_name: "Anchoring Team",
     photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
     tagline: "Wearable sensor metrics researcher",
   },
@@ -259,7 +259,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Karan Malhotra",
     role: "Team Lead",
     level: 4,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=400",
     tagline: "National healthtech hackathons & expo coordinator",
     email: "karan@healthotech.org",
@@ -269,7 +269,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Neha Reddy",
     role: "Vice Lead",
     level: 4,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=400",
     tagline: "Venue operations, logistics & guest management",
     email: "neha@healthotech.org",
@@ -279,7 +279,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Ishaan Ghosh",
     role: "Mem 01",
     level: 5,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
     tagline: "Stage & presentation manager",
   },
@@ -288,7 +288,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Anika Bose",
     role: "Mem 02",
     level: 5,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
     tagline: "Attendee registration & helpline lead",
   },
@@ -297,7 +297,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Rajat Saxena",
     role: "Mem 03",
     level: 5,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
     tagline: "Logistics, audio-visual & equipment flow",
   },
@@ -306,7 +306,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Sneha Pillai",
     role: "Mem 04",
     level: 5,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=400",
     tagline: "Workshop host & speaker liaison",
   },
@@ -315,7 +315,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Deepak Soni",
     role: "Mem 05",
     level: 5,
-    team_name: "Events",
+    team_name: "Event Management Team",
     photo_url: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=400",
     tagline: "Crowd management & volunteer coordination",
   },
@@ -328,7 +328,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Dia Singhania",
     role: "Team Lead",
     level: 4,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
     tagline: "Brand direction, Figma systems & UI/UX design",
     email: "dia@healthotech.org",
@@ -338,7 +338,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Arjun Verma",
     role: "Vice Lead",
     level: 4,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=400",
     tagline: "Motion graphics, 3D medical assets & animations",
     email: "arjun@healthotech.org",
@@ -348,7 +348,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Riya Kapoor",
     role: "Mem 01",
     level: 5,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=400",
     tagline: "Digital illustrator & poster designer",
   },
@@ -357,7 +357,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Kunal Jain",
     role: "Mem 02",
     level: 5,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
     tagline: "Figma prototyping & user research",
   },
@@ -366,7 +366,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Kavya Menon",
     role: "Mem 03",
     level: 5,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
     tagline: "Social media visual designer",
   },
@@ -375,7 +375,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Harsh Vardhan",
     role: "Mem 04",
     level: 5,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
     tagline: "Video editor & reel creator",
   },
@@ -384,7 +384,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Tanvi Shah",
     role: "Mem 05",
     level: 5,
-    team_name: "Design",
+    team_name: "Design Team",
     photo_url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=400",
     tagline: "Typography & merchandise branding",
   },
@@ -397,7 +397,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Simran Kaur",
     role: "Team Lead",
     level: 4,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&q=80&w=400",
     tagline: "Media partnerships & press release manager",
     email: "simran@healthotech.org",
@@ -407,7 +407,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Gaurav Bhatt",
     role: "Vice Lead",
     level: 4,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400",
     tagline: "College ambassadorship program director",
     email: "gaurav@healthotech.org",
@@ -417,7 +417,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Tanya Sen",
     role: "Mem 01",
     level: 5,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=400",
     tagline: "Instagram & LinkedIn community manager",
   },
@@ -426,7 +426,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Aman Tyagi",
     role: "Mem 02",
     level: 5,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=400",
     tagline: "Inter-collegiate communication representative",
   },
@@ -435,7 +435,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Bhavna Joshi",
     role: "Mem 03",
     level: 5,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
     tagline: "Influencer relations & podcast coordinator",
   },
@@ -444,7 +444,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Manav Dave",
     role: "Mem 04",
     level: 5,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
     tagline: "Newsletter outreach specialist",
   },
@@ -453,7 +453,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Sakshi Mishra",
     role: "Mem 05",
     level: 5,
-    team_name: "PR & Outreach",
+    team_name: "PR and Outreach Team",
     photo_url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400",
     tagline: "Campus feedback & audience analytics",
   },
@@ -466,7 +466,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Siddharth Jain",
     role: "Team Lead",
     level: 4,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
     tagline: "Corporate medtech alliances & research grants",
     email: "siddharth@healthotech.org",
@@ -476,7 +476,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Nandini Pillai",
     role: "Vice Lead",
     level: 4,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=400",
     tagline: "Pitch deck formulation & corporate relations",
     email: "nandini@healthotech.org",
@@ -486,7 +486,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Farhan Ali",
     role: "Mem 01",
     level: 5,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
     tagline: "Lead generation & corporate prospecting",
   },
@@ -495,7 +495,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Pooja Hegde",
     role: "Mem 02",
     level: 5,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
     tagline: "Deliverables tracking & sponsor relations",
   },
@@ -504,7 +504,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Karthik Raj",
     role: "Mem 03",
     level: 5,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400",
     tagline: "Contract drafting & financial coordinator",
   },
@@ -513,7 +513,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Divya Nambiar",
     role: "Mem 04",
     level: 5,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=400",
     tagline: "Alumni network outreach & sponsorships",
   },
@@ -522,7 +522,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Pranav Dixit",
     role: "Mem 05",
     level: 5,
-    team_name: "Sponsorship",
+    team_name: "Social Media Team",
     photo_url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
     tagline: "Budget auditor & sponsor onboarding",
   },
@@ -535,7 +535,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Pooja Das",
     role: "Team Lead",
     level: 4,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400",
     tagline: "Editorial director, annual journals & whitepapers",
     email: "pooja@healthotech.org",
@@ -545,7 +545,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Raghav Chawla",
     role: "Vice Lead",
     level: 4,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&q=80&w=400",
     tagline: "Technical blogs, research briefs & speechwriter",
     email: "raghav@healthotech.org",
@@ -555,7 +555,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Zoya Khan",
     role: "Mem 01",
     level: 5,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400",
     tagline: "Scientific blog author & proofreader",
   },
@@ -564,7 +564,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Neil Sen",
     role: "Mem 02",
     level: 5,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
     tagline: "Podcast scriptwriter & show notes creator",
   },
@@ -573,7 +573,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Lavanya Seth",
     role: "Mem 03",
     level: 5,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
     tagline: "Event summary author & newsletter editor",
   },
@@ -582,7 +582,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Omkar Kulkarni",
     role: "Mem 04",
     level: 5,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
     tagline: "Social media copywriter & caption strategist",
   },
@@ -591,7 +591,7 @@ export const INITIAL_TEAM_MEMBERS = [
     name: "Shreya Nair",
     role: "Mem 05",
     level: 5,
-    team_name: "Content",
+    team_name: "Content Team",
     photo_url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
     tagline: "Documentation archivist & meeting minutes lead",
   },
@@ -608,6 +608,37 @@ export function convertGoogleDriveUrl(url) {
     return `https://lh3.googleusercontent.com/d/${match[1]}`;
   }
   return str;
+}
+
+/**
+ * Cleans and validates team members:
+ * - Drops vacant posts for core members (level 5)
+ * - Enforces the strict maximum cap of 15 members per team (excluding executive directorates and team leads)
+ */
+export function sanitizeMembers(members) {
+  if (!Array.isArray(members)) return [];
+
+  const coreMemberCountByTeam = {};
+
+  return members.filter((m) => {
+    if (!m) return false;
+
+    // Filter out vacant core members (for core members do not show vacant post)
+    if (m.level === 5 && m.is_vacant) {
+      return false;
+    }
+
+    // Cap core members at max 15 per team
+    if (m.level === 5 && m.team_name) {
+      const currentCount = coreMemberCountByTeam[m.team_name] || 0;
+      if (currentCount >= 15) {
+        return false;
+      }
+      coreMemberCountByTeam[m.team_name] = currentCount + 1;
+    }
+
+    return true;
+  });
 }
 
 export async function fetchTeamMembers() {
@@ -629,11 +660,13 @@ export async function fetchTeamData(tenure = '') {
       if (response.ok) {
         const result = await response.json();
         if (result && result.members && result.members.length > 0) {
-          const sanitizedMembers = result.members.map((m) => ({
+          const rawMembers = result.members.map((m) => ({
             ...m,
             photo_url: convertGoogleDriveUrl(m.photo_url),
             level: typeof m.level === 'number' ? m.level : 5,
           }));
+
+          const sanitizedMembers = sanitizeMembers(rawMembers);
 
           return {
             tenures: result.tenures || (result.currentTenure ? [result.currentTenure] : []),
@@ -655,10 +688,12 @@ export async function fetchTeamData(tenure = '') {
   return {
     tenures: ['Current Batch (2025-26)'],
     currentTenure: 'Current Batch (2025-26)',
-    members: fallbackMembers.map((m) => ({
-      ...m,
-      photo_url: convertGoogleDriveUrl(m.photo_url),
-    })),
+    members: sanitizeMembers(
+      fallbackMembers.map((m) => ({
+        ...m,
+        photo_url: convertGoogleDriveUrl(m.photo_url),
+      }))
+    ),
     source: 'fallback',
   };
 }

@@ -66,11 +66,15 @@ export default function MemberCard({ member, onClick }) {
           {member.name}
         </h3>
 
-        {member.team_name && isExecutive && (
+        {member.branch ? (
+          <p className="text-[11px] text-gray-400 truncate">
+            {member.branch}
+          </p>
+        ) : member.team_name ? (
           <p className="text-[11px] text-gray-400 truncate">
             {member.team_name}
           </p>
-        )}
+        ) : null}
       </div>
 
       {/* Subtle Arrow Action Hint */}

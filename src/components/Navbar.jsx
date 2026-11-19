@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, Sparkles, Users } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { InstagramIcon } from "./ui/Icons";
+import { InstagramIcon, LinkedInIcon } from "./ui/Icons";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,6 +39,27 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Scroll spy to highlight active section as user scrolls on home page
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const sectionIds = ["home", "about", "domains", "events", "milestones", "faq"];
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && scrollPosition >= el.offsetTop) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, [location.pathname]);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setIsOpen(false);
@@ -63,18 +85,20 @@ export default function Navbar() {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Domains", href: "#domains" },
-    { name: "Projects", href: "#projects" },
     { name: "Events", href: "#events" },
     { name: "Milestones", href: "#milestones" },
     { name: "Team", href: "/team", isRoute: true },
-    { name: "Contact", href: "#contact" },
+    { name: "FAQ", href: "#faq" },
   ];
 
   const isLinkActive = (link) => {
     if (link.isRoute) {
       return location.pathname === link.href;
     }
-    return location.pathname === "/" && link.name === "Home";
+    if (location.pathname === "/") {
+      return activeSection === link.href.substring(1);
+    }
+    return false;
   };
 
   return (
@@ -99,8 +123,6 @@ export default function Navbar() {
                 className="w-full h-full object-contain"
               />
             </div>
-            {/* Glowing dot indicator */}
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[var(--accent-green)] border-2 border-[var(--bg)] animate-pulse" />
           </div>
 
           <div className="flex flex-col">
@@ -113,8 +135,8 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 bg-[var(--surface-alt)]/60 border border-[var(--border)] px-2 py-1 rounded-xl backdrop-blur-md">
+        {/* Desktop Navigation Links without enclosing bubble div */}
+        <div className="hidden lg:flex items-center gap-1.5">
           {navLinks.map((link) => {
             const active = isLinkActive(link);
             return (
@@ -122,10 +144,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-xs uppercase tracking-wider font-space font-medium px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
+                className={`text-xs uppercase tracking-wider font-space font-medium px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer ${
                   active
-                    ? "bg-[var(--accent-cyan)]/15 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/30 font-semibold"
-                    : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-card)]"
+                    ? "bg-[var(--accent-cyan)]/15 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/40 shadow-[0_0_12px_rgba(0,200,255,0.2)] font-semibold"
+                    : "text-[var(--text-muted)] hover:text-white hover:bg-white/5 border border-transparent"
                 }`}
               >
                 {link.name}
@@ -134,8 +156,8 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Action Controls: Instagram & Team Button & Mobile Menu */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Action Controls: Instagram & LinkedIn & Mobile Menu */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Instagram Link */}
           <a
             href="https://www.instagram.com/healthtech_vitb/"
@@ -148,14 +170,17 @@ export default function Navbar() {
             <InstagramIcon className="w-4 h-4" />
           </a>
 
-          {/* Quick CTA to Team */}
-          <Link
-            to="/team"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-space font-semibold px-3 py-1.5 rounded-xl bg-gradient-to-r from-[var(--accent-cyan)]/15 to-[var(--accent-green)]/15 border border-[var(--accent-cyan)]/40 text-[var(--text)] hover:border-[var(--accent-cyan)] hover:shadow-sm transition-all"
+          {/* LinkedIn Link */}
+          <a
+            href="https://www.linkedin.com/company/healthotech/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Health-O-Tech LinkedIn"
+            className="flex items-center justify-center w-9 h-9 rounded-xl bg-[var(--surface-alt)] border border-[var(--border-accent)] text-[var(--text-muted)] hover:text-sky-400 hover:border-sky-400/50 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)] active:scale-95 transition-all cursor-pointer"
+            title="Follow us on LinkedIn"
           >
-            <Users className="w-3.5 h-3.5 text-[var(--accent-cyan)]" />
-            <span>Team Chart</span>
-          </Link>
+            <LinkedInIcon className="w-4 h-4" />
+          </a>
 
           {/* Mobile Menu Hamburger */}
           <button
@@ -190,7 +215,7 @@ export default function Navbar() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-xs sm:text-sm font-space font-medium transition-all cursor-pointer ${
                       active
-                        ? "bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/40"
+                        ? "bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/40 font-semibold"
                         : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-alt)]"
                     }`}
                   >
