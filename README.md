@@ -3,17 +3,16 @@
   <img src="public/logo.png" alt="Health-O-Tech Logo" width="160" />
 
   # Health-O-Tech (HOT)
-  ### Where Healthcare Meets Deep Technology
+  ### Where Healthcare Meets Technology
 
   [![React](https://img.shields.io/badge/React-19.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
   [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
   [![Framer Motion](https://img.shields.io/badge/Framer_Motion-14.7-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-  [![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
   <p align="center">
-    <b>Health-O-Tech (HOT)</b> is VIT Bhopal's premier technical student chapter dedicated to pioneering advancements at the intersection of clinical medicine, computer science, and bio-engineering.
+    Official website for <b>Health-O-Tech (HOT)</b> — the student health informatics and biomedical technology club at VIT Bhopal University.
   </p>
 
   <p align="center">
@@ -33,57 +32,60 @@
 
 ## 🧬 About Health-O-Tech
 
-Modern healthcare is being transformed by machine learning, embedded biosensors, genomics, and clinical informatics. **Health-O-Tech** unites students, researchers, developers, and healthcare enthusiasts to build open-source innovations that solve real-world biomedical challenges.
-
-From edge-AI diagnostic models to sub-$50 myoelectric prosthetic arms and secure patient telemetry networks, our club bridges the gap between theoretical computing and clinical impact.
+**Health-O-Tech (HOT)** is a student-led organization at VIT Bhopal University focused on exploring the convergence of computer science, engineering, and health informatics. The club brings together students across various engineering disciplines to learn, build projects, conduct academic research, and organize campus health events like the annual *Run Riot* marathon.
 
 ---
 
 ## 🔬 Core Domains
 
-| Domain | Focus Area | Technologies |
+The club's activities and student projects span six primary verticals:
+
+| Domain | Focus Area | Technologies & Tools |
 | :--- | :--- | :--- |
-| **🧠 AI & Diagnostics** | Deep Learning, 3D MRI/CT scan segmentation, pathology classification & automated radiology assistance. | PyTorch, TensorFlow, MONAI, Vision Transformers |
-| **🩺 IoT & Bio-Sensors** | Real-time biotelemetry patches, wearable ECG/PPG nodes, low-latency vital sign transmission. | ESP32-S3, AD8232, MQTT, BLE, FreeRTOS |
-| **🧬 Genomics & Bio-Info** | Computational DNA sequence alignment, CRISPR off-target scoring, structural protein folding. | Biopython, BLAST, AlphaFold pipelines |
-| **📊 Health Informatics & EHR** | Secure clinical databases, electronic health records, interoperable FHIR/HL7 schemas. | Supabase, PostgreSQL, FHIR/HL7, HIPAA Compliant Architecture |
-| **🤖 Robotics & Bionics** | Surface EMG-controlled prosthetics, assistive exoskeletons, mechatronic surgery simulators. | Arduino, EMG Sensors, Servo Actuators, SolidWorks |
-| **🥽 XR & Medical Simulation** | Interactive surgical training environments and anatomy visualization in augmented/virtual reality. | WebXR, Three.js, Unity, WebGL |
+| **🧠 AI & Diagnostics** | Machine learning exploration for medical imaging, dataset analysis, and clinical diagnostic assistance. | Python, PyTorch, TensorFlow, OpenCV |
+| **🩺 IoT & Bio-Sensors** | Wearable biosensor prototyping, pulse and ECG signal capture, microcontroller telemetry. | ESP32, Arduino, Biomedical Sensors, BLE |
+| **🧬 Genomics & Bio-Informatics** | Computational biology pipelines, sequence alignment algorithms, genetic data analysis. | Python, Biopython, Bioinformatics Toolkits |
+| **📊 Health Informatics** | Digital health records, clinical database systems, patient data workflows. | SQL, REST APIs, Web Technologies |
+| **🤖 Assistive Devices & Bionics** | Prototyping basic assistive mechanisms, sensor-assisted mobility aids, and ergonomic designs. | Microcontrollers, Servo Motors, 3D Modeling |
+| **🥽 Medical Simulation & Visualization** | Anatomy visualization, educational simulations, and 3D visual aids for health education. | WebGL, Web Standards, 3D Assets |
 
 ---
 
 ## ✨ Key Features of the Platform
 
-- **⚡ Biopunk Cyber Dark Design**: Crafted with custom cyan (`#00C8FF`) and emerald (`#00E676`) bioluminescent accents, ambient glow effects, and modern glassmorphic surfaces.
-- **🧬 Dynamic Particle Canvas**: High-performance bioluminescent particle field simulated natively in HTML5 Canvas reacting to cursor movements.
-- **📊 Live Bio-Telemetry Bar**: Simulated telemetry vitals (ECG rhythm, SpO2, core temp, system status) anchored into the navigation layer.
-- **🗂️ Interactive Innovation Showcase**: Categorized flagship projects with smooth spring re-layout animations powered by Framer Motion.
-- **👥 Eraser-Style Org Hierarchy Chart (`/team`)**: Interactive tree view displaying the club executive directorate, department leads, and coordinators with filterable tabs and member bios.
-- **🎟️ Digital Event Pass Generator**: Generates customized cyber event passes with dynamic QR codes for club hackathons and workshops.
-- **📊 Google Drive Folder Live Sync**: Multi-tenure team rosters and leadership architectures synced dynamically via Google Apps Script Web App.
+- **⚡ Biopunk Cyber Aesthetic**: Custom dark theme featuring bioluminescent cyan (`#00C8FF`) and emerald (`#00E676`) accents with frosted glassmorphic card surfaces.
+- **🧬 Interactive Particle Canvas**: Custom HTML5 Canvas particle field on the hero section that smoothly reacts to cursor interaction.
+- **🏃 Featured Events Gallery**: Media showcase and photo gallery highlighting campus initiatives including the annual *Run Riot '26* marathon.
+- **🃏 Sticky Stacking FAQ Cards**: Interactive stacked card deck in the FAQ section powered by CSS sticky positioning and Framer Motion entrance animations.
+- **👥 Multi-Tenure Team Architecture (`/team`)**:
+  - **Desktop Flowchart**: Dynamic Eraser-style organizational hierarchy diagram connecting the Executive Directorate, Department Leads, and Core Members.
+  - **Mobile Cards View**: Clean card layout grouped by department with quick-filter pills for seamless mobile browsing.
+  - **Member Modal**: Detailed modal popup with member profiles, roles, quotes, and social links.
+  - **Real-Time Search**: Instant filtering across members, roles, departments, batches, and academic branches.
+- **📊 Google Sheets / Drive Live Sync**: Fetches team rosters dynamically across tenures via a Google Apps Script Web App, with local fallback data if offline.
+- **📬 Health & Wellness Inquiry Desk**: Interactive contact form for student inquiries regarding club activities, wellness initiatives, and events.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [React 19](https://react.dev/) + [Vite 8](https://vitejs.dev/)
+- **Frontend Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite 8](https://vitejs.dev/)
 - **Routing**: [React Router DOM v7](https://reactrouter.com/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`) + Custom CSS design tokens
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`) + CSS Custom Properties
+- **Motion & Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Iconography**: [Lucide React](https://lucide.dev/)
-- **Data Layer**: Google Drive & Sheets Live Sync API
+- **Data Integration**: Google Apps Script Web App (syncing multi-tenure Google Sheets from Drive)
 - **Typography**: [Orbitron](https://fonts.google.com/specimen/Orbitron) & [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these instructions to set up the project locally on your machine.
-
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version **18.x** or higher recommended)
-- `npm` (bundled with Node) or `pnpm` / `yarn`
+- [Node.js](https://nodejs.org/) (**18.x** or higher recommended)
+- `npm` (comes with Node.js) or `pnpm` / `yarn`
 
 ### 1. Clone the Repository
 
@@ -98,29 +100,29 @@ cd Health-O-Tech-Webiste
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 3. Configure Environment Variables (Optional)
 
-Create a `.env` file in the root directory by copying the sample configuration:
+Copy the example environment configuration:
 
 ```bash
 cp .env.example .env
 ```
 
-Open `.env` and fill in your Google Sheets Apps Script API URL:
+To sync live team data from your Google Drive folder, add your Google Apps Script Web App URL to `.env`:
 
 ```env
 VITE_GOOGLE_SHEETS_API_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
 ```
 
-> **Note**: The application includes graceful fallback data if the API URL is not provided, allowing all UI flows and components to be tested locally.
+> **Note**: If `VITE_GOOGLE_SHEETS_API_URL` is omitted, the application automatically uses comprehensive local fallback data in `src/lib/teamData.js`.
 
-### 4. Run Development Server
+### 4. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-Visit `http://localhost:5173` in your browser.
+Open `http://localhost:5173` in your browser.
 
 ### 5. Build for Production
 
@@ -128,7 +130,7 @@ Visit `http://localhost:5173` in your browser.
 npm run build
 ```
 
-To preview the production build locally:
+Preview the production build:
 
 ```bash
 npm run preview
@@ -140,64 +142,64 @@ npm run preview
 
 ```text
 Health-O-Tech-Webiste/
-├── .agents/                    # AI Agent skills & development conventions
+├── .agents/                    # Agent skills & development conventions
 │   └── skills/
-│       └── health-o-tech-dev/  # Biopunk design & Framer Motion guidelines
-├── public/                     # Static media assets, logos, and icons
+│       └── health-o-tech-dev/  # Guidelines and design tokens
+├── gas/                        # Google Apps Script API source
+│   └── TeamFolderAPI.gs        # Multi-sheet Google Drive sync script
+├── public/                     # Static assets (logos, video, event photos)
 │   ├── banner.jpg
-│   ├── favicon.svg
-│   └── logo.png
+│   ├── dna.mp4
+│   ├── logo.png
+│   └── events/
+│       └── run-riot-26/        # Marathon event photo assets
 ├── src/
-│   ├── components/             # Reusable modular UI components
-│   │   ├── home/               # Landing page sections (Hero, About, Domains, Projects, etc.)
-│   │   ├── team/               # Org chart & team hierarchy components
-│   │   ├── Footer.jsx          # Site footer with social links & branding
-│   │   ├── Navbar.jsx          # Top navigation with status badge
-│   │   └── ScrollToTop.jsx     # Route transition scroll handler
-│   ├── context/                # React context providers (Theme, etc.)
-│   ├── lib/                    # Team data loader & Google Sheets API sync
-│   ├── pages/                  # Page routes (Home.jsx, Team.jsx)
-│   ├── App.jsx                 # Route definitions & layout wrappers
-│   ├── index.css               # Design tokens, fonts, and Tailwind styles
-│   └── main.jsx                # Application root entry point
-├── .env.example                # Sample environment configuration
-├── gas/                        # Google Apps Script API templates
-├── index.html                  # HTML entry point with biopunk typography
+│   ├── components/             # Reusable UI components
+│   │   ├── home/               # Home sections (Hero, About, Domains, Events, Milestones, FAQ, Join)
+│   │   ├── team/               # Team page components (EraserHierarchyChart, MemberCard, MemberModal)
+│   │   ├── ui/                 # Shared UI elements (Icons.jsx)
+│   │   ├── Footer.jsx          # Site footer
+│   │   ├── Navbar.jsx          # Top navigation bar
+│   │   └── ScrollToTop.jsx     # Floating back-to-top button
+│   ├── lib/
+│   │   ├── teamData.js         # Team data fetching, caching, and fallback data
+│   │   └── utils.js            # Shared utility functions
+│   ├── pages/                  # Page route components
+│   │   ├── Home.jsx            # Main landing page
+│   │   ├── Team.jsx            # Team hierarchy & roster page
+│   │   └── NotFound.jsx        # 404 error page
+│   ├── App.jsx                 # Route configurations and layout wrapper
+│   ├── index.css               # Design tokens, theme colors, circuit background
+│   └── main.jsx                # Application entry point
+├── .env.example                # Sample environment file
+├── .gitignore                  # Git ignore rules
+├── eslint.config.js            # ESLint flat configuration
+├── index.html                  # HTML entry point with web fonts
 ├── LICENSE                     # MIT License
-├── package.json                # Project dependencies and build scripts
+├── package.json                # Project dependencies and npm scripts
 └── vite.config.js              # Vite configuration with Tailwind CSS v4
 ```
 
 ---
 
-## 🤖 Agentic & AI Guidelines
-
-This codebase is configured with an **Antigravity Agent Skill** at [`.agents/skills/health-o-tech-dev/SKILL.md`](.agents/skills/health-o-tech-dev/SKILL.md). When collaborating with AI agents:
-
-- **Animation Rule**: Never mix CSS `transition-all` with Framer Motion transforms or layout animations to avoid frame stutters.
-- **Design Tokens**: Always reference `--accent-cyan`, `--accent-green`, `--surface-card`, and `--border-accent` from `src/index.css`.
-- **Forms**: Validate email inputs, display feedback alerts, and handle loading states using biometric-themed cyber styles.
-
----
-
 ## 🤝 Contributing
 
-Contributions to Health-O-Tech projects and this website are warmly welcomed!
+Contributions are welcome! Please follow these steps:
 
 1. **Fork** the repository
 2. **Create** a feature branch:
    ```bash
-   git checkout -b feature/amazing-feature
+   git checkout -b feature/your-feature-name
    ```
 3. **Commit** your changes:
    ```bash
-   git commit -m "feat: add amazing feature"
+   git commit -m "feat: describe your change"
    ```
 4. **Push** to your branch:
    ```bash
-   git push origin feature/amazing-feature
+   git push origin feature/your-feature-name
    ```
-5. **Open** a Pull Request against `main`
+5. **Open** a Pull Request against the `main` branch
 
 ---
 
@@ -208,5 +210,5 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more informa
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <b>Health-O-Tech (HOT)</b> • Vellore Institute of Technology, Bhopal</sub>
+  <sub>Built by <b>Health-O-Tech (HOT)</b> • Vellore Institute of Technology, Bhopal</sub>
 </div>
