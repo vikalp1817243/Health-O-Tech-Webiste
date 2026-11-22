@@ -1,6 +1,3 @@
-/**
- * Smoothly scrolls to a specified DOM element ID or top of page.
- */
 export function smoothScrollTo(targetId) {
   if (!targetId || targetId === 'top') {
     window.scrollTo({ top: 0, behavior: 'smooth' });

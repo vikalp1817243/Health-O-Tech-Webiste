@@ -1,59 +1,246 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Calendar, 
-  MapPin, 
-  Sparkles, 
-  ExternalLink,
-  X
-} from 'lucide-react';
+import { X } from 'lucide-react';
+import EventCard from './EventCard';
 
 export default function EventsSection() {
-  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [activeEventIdx, setActiveEventIdx] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [activePhotoByEvent, setActivePhotoByEvent] = useState({});
   const [previewPhoto, setPreviewPhoto] = useState(null);
 
-  const runRiotPhotos = [
-    { src: '/events/run-riot-26/run1.jpg', caption: 'Run Riot \'26 Opening Ceremony & Flag-Off' },
-    { src: '/events/run-riot-26/run2.jpg', caption: 'Students & Faculty Marathon Participants Sprinting' },
-    { src: '/events/run-riot-26/run3.jpg', caption: 'Health Tech Wellness & Hydration Checkpoint' },
-    { src: '/events/run-riot-26/run4.jpg', caption: 'Award Ceremony & Commemorative Finisher Medals' },
+  const lastWheelTime = useRef(0);
+
+  const eventsData = [
+    {
+      id: 'run-riot-26',
+      title: 'RUN RIOT',
+      edition: "'26",
+      subtitle: 'The Annual Fitness Sprint & Health Awareness Marathon',
+      date: 'April 2026',
+      location: 'VIT Bhopal Campus',
+      type: 'Flagship Event',
+      status: 'Completed',
+      accentColor: 'var(--accent-green)',
+      accentGlow: 'rgba(0, 230, 118, 0.15)',
+      badgeClass: 'bg-emerald-500/15 text-[var(--accent-green)] border-emerald-500/30',
+      desc: 'Organized by Health-O-Tech in April 2026, Run Riot brought together over 500+ enthusiastic runners across certified 5K and 10K campus tracks, blending endurance sports with real-time biometric tracking demos, hydration checkpoints, and health assessments.',
+      metrics: [
+        { value: '500+', label: 'Runners & Sprinters' },
+        { value: '5K & 10K', label: 'Certified Tracks' },
+        { value: '100%', label: 'Telemetry Monitored' },
+        { value: '₹50K+', label: 'Prizes & Medals' },
+      ],
+      photos: [
+        { src: '/events/run-riot-26/run1.jpg', caption: "Run Riot '26 Opening Ceremony & Flag-Off" },
+        { src: '/events/run-riot-26/run2.jpg', caption: 'Students & Faculty Marathon Participants Sprinting' },
+        { src: '/events/run-riot-26/run3.jpg', caption: 'Health Tech Wellness & Hydration Checkpoint' },
+        { src: '/events/run-riot-26/run4.jpg', caption: 'Award Ceremony & Commemorative Finisher Medals' },
+      ],
+    },
+    {
+      id: 'medhack-25',
+      title: 'MEDHACK',
+      edition: "'25",
+      subtitle: 'National 36-Hour Clinical AI & Diagnostics Hackathon',
+      date: 'November 2025',
+      location: 'VIT Bhopal Auditorium',
+      type: 'National Hackathon',
+      status: 'Completed',
+      accentColor: 'var(--accent-cyan)',
+      accentGlow: 'rgba(0, 200, 255, 0.15)',
+      badgeClass: 'bg-cyan-500/15 text-[var(--accent-cyan)] border-cyan-500/30',
+      desc: 'A high-intensity 36-hour hackathon where 60+ collegiate teams engineered edge-AI diagnostic models, automated triage assistants, and predictive radiology pipelines using real-world anonymized healthcare datasets.',
+      metrics: [
+        { value: '60+', label: 'Collegiate Teams' },
+        { value: '36 Hrs', label: 'Continuous Sprint' },
+        { value: '15+', label: 'Clinical Datasets' },
+        { value: '₹1 Lakh', label: 'Total Prize Pool' },
+      ],
+      photos: [
+        {
+          src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800',
+          caption: "MedHack '25 Overnight Prototype Hacking Sprint",
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
+          caption: 'Clinical Data Modeling & Model Performance Evaluation',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
+          caption: 'Project Demonstration to Jury of Physicians & Tech Leads',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+          caption: 'Top 3 Winning Innovations Announced at Grand Finale',
+        },
+      ],
+    },
+    {
+      id: 'biosignals-bootcamp',
+      title: 'BIO-SIGNALS',
+      edition: "'26",
+      subtitle: 'Hands-on ECG Hardware & Wearable Telemetry Workshop',
+      date: 'January 2026',
+      location: 'Embedded Systems Lab',
+      type: 'Hands-on Bootcamp',
+      status: 'Completed',
+      accentColor: 'var(--accent-green)',
+      accentGlow: 'rgba(0, 230, 118, 0.15)',
+      badgeClass: 'bg-emerald-500/15 text-[var(--accent-green)] border-emerald-500/30',
+      desc: 'An immersive hands-on engineering lab where 120+ student developers wired AD8232 heart rate sensor shields to ESP32 and Arduino microcontrollers, calibrating analog biological signals into clean digital waveforms.',
+      metrics: [
+        { value: '120+', label: 'Student Builders' },
+        { value: '40+', label: 'Hardware Kits' },
+        { value: '100%', label: 'Hands-on Assembling' },
+        { value: 'ESP32', label: 'Telemetry Nodes' },
+      ],
+      photos: [
+        {
+          src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+          caption: 'Real-time Cardiac Waveform Calibration on Digital Oscilloscope',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+          caption: 'Assembling Analog Front-End Electrodes & Microcontroller Bridges',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=800',
+          caption: 'Students Debugging Microcontroller Code in Embedded Lab',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+          caption: 'Live Telemetry Testing with Wireless Bluetooth Data Stream',
+        },
+      ],
+    },
+    {
+      id: 'digital-therapeutics',
+      title: 'DIGITAL THERAPEUTICS',
+      edition: "'26",
+      subtitle: 'National Health-Tech Symposium & Clinical Panels',
+      date: 'February 2026',
+      location: 'Virtual & Campus Hybrid',
+      type: 'Keynote & Panel',
+      status: 'Completed',
+      accentColor: 'var(--accent-purple)',
+      accentGlow: 'rgba(168, 85, 247, 0.15)',
+      badgeClass: 'bg-purple-500/15 text-[var(--accent-purple)] border-purple-500/30',
+      desc: 'A landmark hybrid conference featuring distinguished talks from medical informatics researchers, hospital administrators, and bioengineering leads exploring the future of patient care, ethical AI guidelines, and academic publications.',
+      metrics: [
+        { value: '400+', label: 'Registered Delegates' },
+        { value: '12', label: 'Keynote Speakers' },
+        { value: '5', label: 'Clinical Expert Panels' },
+        { value: 'Hybrid', label: 'Campus & Global Stream' },
+      ],
+      photos: [
+        {
+          src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800',
+          caption: 'Opening Keynote Address on Digital Therapeutics Transformation',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800',
+          caption: 'Physicians & Engineers Panel on AI Ethics in Diagnostics',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800',
+          caption: 'Healthcare Exhibition Hall & Academic Paper Presentations',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800',
+          caption: 'Interactive Q&A Session with Visiting Health-Tech Founders',
+        },
+      ],
+    },
   ];
 
-  const otherEvents = [
-    {
-      title: 'MedHack \'25: AI in Healthcare Hackathon',
-      date: 'November 2025',
-      type: '36-Hour Hackathon',
-      location: 'VIT Bhopal Auditorium',
-      desc: '36-hour national level hackathon focused on building predictive algorithms for hospital triage, ECG telemetry, and clinical diagnostic assistants.',
-      badgeColor: 'text-[var(--accent-cyan)] border-[var(--accent-cyan)]/40 bg-[var(--accent-cyan)]/10',
+  const totalEvents = eventsData.length;
+
+  const paginate = useCallback((newDirection) => {
+    setDirection(newDirection);
+    setActiveEventIdx((prev) => (prev + newDirection + totalEvents) % totalEvents);
+  }, [totalEvents]);
+
+  // 7-Second Automatic Progression Timer (resets automatically when activeEventIdx changes)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [activeEventIdx, paginate]);
+
+  // Laptop/Mouse Wheel & Trackpad Gesture Handler (triggered when hovering over the carousel card)
+  const handleWheel = (e) => {
+    const now = Date.now();
+    if (now - lastWheelTime.current < 700) return; // 700ms cooldown to ensure smooth single-card transitions
+
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) > 20) {
+      lastWheelTime.current = now;
+      if (delta > 0) {
+        paginate(1);
+      } else {
+        paginate(-1);
+      }
+    }
+  };
+
+  // Touch & Mouse Drag / Swipe Handler
+  const handleDragEnd = (e, { offset, velocity }) => {
+    const swipePower = Math.abs(offset.x) * velocity.x;
+    if (offset.x < -60 || velocity.x < -400) {
+      paginate(1);
+    } else if (offset.x > 60 || velocity.x > 400) {
+      paginate(-1);
+    }
+  };
+
+  const currentEvent = eventsData[activeEventIdx];
+  const currentPhotoIdx = activePhotoByEvent[currentEvent.id] || 0;
+
+  const handleSelectPhoto = (pIdx) => {
+    setActivePhotoByEvent((prev) => ({
+      ...prev,
+      [currentEvent.id]: pIdx,
+    }));
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 320 : -320,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { duration: 0.7, ease: [0.25, 1, 0.5, 1] },
+        opacity: { duration: 0.45 },
+        scale: { duration: 0.45 },
+      },
     },
-    {
-      title: 'Bio-Signals & ECG Embedded Hardware Workshop',
-      date: 'January 2026',
-      type: 'Hands-on Bootcamp',
-      location: 'Embedded Systems Lab',
-      desc: 'Hands-on session where 120+ students assembled AD8232 ECG sensor shields on Arduino/ESP32 platforms to capture real-time cardiac waveforms.',
-      badgeColor: 'text-[var(--accent-green)] border-[var(--accent-green)]/40 bg-[var(--accent-green)]/10',
-    },
-    {
-      title: 'National Digital Therapeutics Symposium',
-      date: 'February 2026',
-      type: 'Keynote & Panel',
-      location: 'Virtual & Campus Hybrid',
-      desc: 'Distinguished lectures by medtech startup founders and bioinformaticians exploring AI regulatory compliance, HIPAA standards, and venture grants.',
-      badgeColor: 'text-[var(--accent-purple)] border-[var(--accent-purple)]/40 bg-[var(--accent-purple)]/10',
-    },
-  ];
+    exit: (dir) => ({
+      x: dir < 0 ? 320 : -320,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { duration: 0.7, ease: [0.25, 1, 0.5, 1] },
+        opacity: { duration: 0.35 },
+        scale: { duration: 0.35 },
+      },
+    }),
+  };
 
   return (
     <section id="events" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
+      <div className="text-center max-w-3xl mx-auto mb-10">
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-orbitron font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4"
         >
@@ -63,187 +250,48 @@ export default function EventsSection() {
         <motion.p
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-space text-[var(--text-muted)] text-sm sm:text-base leading-relaxed"
         >
-          From high-energy health marathons to intensive med-tech hackathons, discover the signature gatherings hosted by Health-O-Tech.
+          From campus health marathons to national med-tech hackathons, explore our signature events with live swipe & scroll.
         </motion.p>
       </div>
 
       {/* ========================================================================= */}
-      {/* SPOTLIGHT: RUN RIOT '26 MARATHON & HEALTH TECH FIESTA                    */}
+      {/* SINGLE-EVENT CAROUSEL CONTAINER (SWIPE + WHEEL SCROLLABLE)                */}
       {/* ========================================================================= */}
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-70px" }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-3xl bg-[var(--surface-card)] border border-[var(--border-accent)] p-6 sm:p-8 lg:p-10 mb-14 backdrop-blur-2xl shadow-2xl overflow-hidden"
+      <div
+        className="relative w-full cursor-grab active:cursor-grabbing select-none"
+        onWheel={handleWheel}
       >
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--accent-green)]/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Details */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
-            <div>
-              {/* Badges */}
-              <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="font-orbitron text-[10px] tracking-wider px-3 py-1 rounded-full bg-emerald-500/15 text-[var(--accent-green)] font-bold uppercase">
-                  Flagship Event
-                </span>
-                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/[0.04] text-white flex items-center gap-1.5">
-                  <Calendar className="w-3 h-3 text-[var(--accent-cyan)]" />
-                  April 2026
-                </span>
-                <span className="font-space text-[11px] px-2.5 py-1 rounded-full bg-white/[0.04] text-white flex items-center gap-1.5">
-                  <MapPin className="w-3 h-3 text-rose-400" />
-                  VIT Bhopal Campus
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="font-orbitron font-extrabold text-2xl sm:text-3xl text-white mb-3">
-                RUN RIOT <span className="text-[var(--accent-green)]">'26</span>
-              </h3>
-              
-              <p className="font-space text-xs sm:text-sm text-[var(--accent-cyan)] font-semibold uppercase tracking-wider mb-4">
-                The Annual Fitness Sprint & Health Awareness Marathon
-              </p>
-
-              <p className="font-space text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-6">
-                Organized by the Health-O-Tech Club in April 2026, Run Riot brought together over 500+ enthusiastic participants, 
-                blending endurance sports with real-time health monitoring demos and fitness assessments.
-              </p>
-
-              {/* Highlights List */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-white/[0.04]">
-                  <div className="font-orbitron font-bold text-lg text-white">500+</div>
-                  <div className="font-space text-[11px] text-[var(--text-muted)]">Runners & Sprinters</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white/[0.04]">
-                  <div className="font-orbitron font-bold text-lg text-[var(--accent-green)]">5K & 10K</div>
-                  <div className="font-space text-[11px] text-[var(--text-muted)]">Certified Tracks</div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Quick Caption */}
-            <div className="font-space text-xs text-neutral-400 italic">
-              📸 Click any photograph on the right to open high-resolution gallery view.
-            </div>
-          </div>
-
-          {/* Right: Interactive Photo Showcase */}
-          <div className="lg:col-span-6 flex flex-col gap-3">
-            {/* Main Featured Photo Display */}
-            <div 
-              className="relative aspect-video rounded-2xl overflow-hidden border border-[var(--border-accent)] bg-black/60 shadow-xl cursor-pointer group"
-              onClick={() => setPreviewPhoto(runRiotPhotos[activePhotoIdx].src)}
-            >
-              <img
-                src={runRiotPhotos[activePhotoIdx].src}
-                alt={runRiotPhotos[activePhotoIdx].caption}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-                <span className="font-space text-xs text-white/90 font-medium">
-                  {runRiotPhotos[activePhotoIdx].caption}
-                </span>
-              </div>
-              <div className="absolute top-3 right-3 p-2 rounded-xl bg-black/60 text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                <ExternalLink className="w-4 h-4 text-[var(--accent-cyan)]" />
-              </div>
-            </div>
-
-            {/* Thumbnails Row */}
-            <div className="grid grid-cols-4 gap-2">
-              {runRiotPhotos.map((photo, pIdx) => (
-                <button
-                  key={photo.src}
-                  type="button"
-                  onClick={() => setActivePhotoIdx(pIdx)}
-                  className={`relative aspect-video rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                    activePhotoIdx === pIdx
-                      ? 'border-[var(--accent-green)] scale-95 shadow-[0_0_12px_rgba(0,230,118,0.5)]'
-                      : 'border-white/10 opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  <img src={photo.src} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </motion.div>
-
-      {/* ========================================================================= */}
-      {/* OTHER CLUB EVENTS & WORKSHOPS                                             */}
-      {/* ========================================================================= */}
-      <motion.div
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-          },
-        }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6"
-      >
-        {otherEvents.map((evt) => (
+        <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
-            key={evt.title}
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.45, ease: [0.25, 1, 0.5, 1] },
-              },
-            }}
-            className="p-6 rounded-2xl bg-[var(--surface-card)] border border-[var(--border-accent)] hover:border-[var(--accent-cyan)] backdrop-blur-xl shadow-lg transition-[border-color,box-shadow] duration-200 flex flex-col justify-between"
+            key={currentEvent.id}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            className="w-full"
           >
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className={`font-space text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md border ${evt.badgeColor}`}>
-                  {evt.type}
-                </span>
-                <span className="font-space text-xs text-[var(--text-muted)] font-mono">
-                  {evt.date}
-                </span>
-              </div>
-
-              <h4 className="font-orbitron font-bold text-base sm:text-lg text-white mb-2 leading-snug">
-                {evt.title}
-              </h4>
-
-              <div className="flex items-center gap-1.5 text-xs text-neutral-400 font-space mb-4">
-                <MapPin className="w-3.5 h-3.5 text-[var(--accent-cyan)]" />
-                <span>{evt.location}</span>
-              </div>
-
-              <p className="font-space text-xs text-[var(--text-muted)] leading-relaxed">
-                {evt.desc}
-              </p>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-[var(--accent-cyan)] font-space font-medium">
-              <span>Event Completed</span>
-              <Sparkles className="w-3.5 h-3.5 text-[var(--accent-green)]" />
-            </div>
+            <EventCard
+              event={currentEvent}
+              activePhotoIdx={currentPhotoIdx}
+              onSelectPhoto={handleSelectPhoto}
+              onOpenLightbox={setPreviewPhoto}
+              activeEventIdx={activeEventIdx}
+              totalEvents={totalEvents}
+              onPrev={() => paginate(-1)}
+              onNext={() => paginate(1)}
+            />
           </motion.div>
-        ))}
-      </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* Fullscreen Photo Lightbox Modal */}
       <AnimatePresence>

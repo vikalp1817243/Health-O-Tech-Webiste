@@ -1,7 +1,4 @@
 import HeroSection from '../components/home/HeroSection';
-// MARKED FOR REMOVAL UPON USER REQUEST:
-// import BioTelemetryBar from '../components/home/BioTelemetryBar';
-// import StatsBar from '../components/home/StatsBar';
 import AboutSection from '../components/home/AboutSection';
 import DomainsSection from '../components/home/DomainsSection';
 import EventsSection from '../components/home/EventsSection';
@@ -12,29 +9,12 @@ import JoinSection from '../components/home/JoinSection';
 function HomePage() {
   return (
     <main className="w-full">
-      {/* 1. Hero Section with DNA Video */}
       <HeroSection />
-
-      {/* MARKED FOR REMOVAL UPON USER REQUEST: 2. Live Bio-Signal ECG & 3. Stats Bar */}
-      {/* <BioTelemetryBar /> */}
-      {/* <StatsBar /> */}
-
-      {/* 4. About Section with Official Banner & 3 Pillars */}
       <AboutSection />
-
-      {/* 5. Core Domains & Verticals */}
       <DomainsSection />
-
-      {/* 7. Featured Events (Run Riot '26 & Tech Summits) */}
       <EventsSection />
-
-      {/* 8. Club Milestones & Achievements */}
       <MilestonesSection />
-
-      {/* 9. FAQ Accordion */}
       <FaqSection />
-
-      {/* 10. Join Us & Health Inquiry Desk */}
       <JoinSection />
     </main>
   );
