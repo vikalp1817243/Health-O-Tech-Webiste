@@ -47,4 +47,7 @@ scripts/
 
 # Retained sections temporarily excluded
 src/components/home/AffiliationsSection.jsx
+src/components/home/ProjectsSection.jsx
+src/components/home/BioTelemetryBar.jsx
+src/components/home/StatsBar.jsx
 
